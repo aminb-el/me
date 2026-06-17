@@ -1,1 +1,218 @@
+/* Mohamed Amine Belachhab — minimal academic website */
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #111;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  line-height: 1.55;
+}
+
+.container {
+  width: min(760px, calc(100% - 36px));
+  margin: 42px auto;
+}
+
+header {
+  margin-bottom: 22px;
+}
+
+.name {
+  display: inline-block;
+  font-size: 1.35rem;
+  font-weight: normal;
+  color: #000;
+  text-decoration: none;
+  margin-bottom: 4px;
+}
+
+.name:hover {
+  text-decoration: underline;
+}
+
+.tagline {
+  display: block;
+  color: #444;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+nav {
+  font-size: 0.92rem;
+}
+
+nav a {
+  color: #000;
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a.active {
+  text-decoration: underline;
+}
+
+.sep {
+  color: #777;
+  margin: 0 6px;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 28px 0;
+}
+
+section {
+  margin: 0 0 26px;
+}
+
+.section-label {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+p {
+  margin: 0 0 15px;
+}
+
+a {
+  color: #000;
+}
+
+a:hover {
+  text-decoration-thickness: 1px;
+}
+
+.entry {
+  margin-bottom: 24px;
+}
+
+.entry-title {
+  font-size: 1.02rem;
+  color: #000;
+  text-decoration: none;
+}
+
+.entry-title:hover {
+  text-decoration: underline;
+}
+
+.entry-meta {
+  color: #666;
+  font-size: 0.86rem;
+  margin-top: 2px;
+}
+
+.entry-abstract {
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+
+.entry-links {
+  margin-top: 6px;
+  font-size: 0.9rem;
+}
+
+.entry-links a {
+  margin-right: 12px;
+}
+
+.small {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: #555;
+  border-left: 2px solid #ddd;
+  padding-left: 12px;
+}
+
+ul {
+  padding-left: 22px;
+  margin-top: 8px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+.contact-line {
+  margin-bottom: 10px;
+}
+
+.label {
+  display: inline-block;
+  min-width: 86px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+blockquote {
+  margin: 18px 0;
+  padding-left: 16px;
+  border-left: 2px solid #ddd;
+  color: #333;
+  font-style: italic;
+}
+
+.blog-post-content h1 {
+  font-size: 1.45rem;
+  font-weight: normal;
+  line-height: 1.25;
+  margin: 0 0 18px;
+}
+
+.blog-post-content h2 {
+  font-size: 1.05rem;
+  margin: 28px 0 10px;
+}
+
+footer {
+  color: #777;
+  font-size: 0.82rem;
+  margin-top: 42px;
+}
+
+code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.92em;
+}
+
+@media (max-width: 560px) {
+  .container {
+    margin: 28px auto;
+    width: min(100% - 26px, 760px);
+  }
+
+  .name {
+    font-size: 1.22rem;
+  }
+
+  .tagline {
+    font-size: 0.9rem;
+  }
+
+  nav {
+    line-height: 1.8;
+  }
+
+  .label {
+    display: block;
+    margin-bottom: 2px;
+  }
+}
