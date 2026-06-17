@@ -1,50 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Papers | Mohamed Amine Belachhab</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Papers — Mohamed Amine Belachhab</title>
+  <meta name="description" content="Working papers and independent research by Mohamed Amine Belachhab." />
+
+  <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <a href="index.html" class="logo">Aminios</a>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="papers.html" class="active">Papers</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+  <div class="container">
+    <header>
+      <a class="name" href="../index.html">Mohamed Amine Belachhab</a>
+      <span class="tagline">mathematics / epistemology / a little AI safety — Fes, Morocco</span>
 
-        <main>
-            <h1>Research & Papers</h1>
-            <p>A compilation of analytical texts, mathematical proofs, and conceptual AI frameworks.</p>
+      <nav>
+        <a href="../index.html">about</a><span class="sep">·</span>
+        <a href="index.html" class="active">papers</a><span class="sep">·</span>
+        <a href="../projects/index.html">projects</a><span class="sep">·</span>
+        <a href="../blog/index.html">notes</a><span class="sep">·</span>
+        <a href="../contact.html">contact</a>
+      </nav>
+    </header>
 
-            <div class="item-card">
-                <h3>Goldbach Conjecture Deep-Dive</h3>
-                <p>An extensive, analytical examination exploring the intricacies, bounds, and structures regarding prime distribution models.</p>
-                <a href="Goldbach_full_paper.pdf" target="_blank" class="item-link">Read PDF Document &rarr;</a>
-            </div>
+    <hr />
 
-            <div class="item-card">
-                <h3>Instrumental Convergence Study</h3>
-                <p>An empirical and theoretical analysis targeting AI agent behavior patterns, detailing hazards surrounding instrumental convergence goals.</p>
-                <a href="instrumental_convergence_paper.pdf" target="_blank" class="item-link">Read PDF Document &rarr;</a>
-            </div>
+    <section>
+      <span class="section-label">Papers</span>
 
-            <div class="item-card">
-                <h3>Unified Truth Importance Framework (v4)</h3>
-                <p>A conceptual framework mapping alignment criteria and objective functions necessary for building high-fidelity semantic understanding models.</p>
-                <a href="unified_truth_importance_framework_v4.docx" download class="item-link">Download Document &rarr;</a>
-            </div>
-        </main>
+      <p class="small">
+        Independent working papers. These are shared as drafts, not as final claims of authority.
+        I use them to make my thinking inspectable.
+      </p>
 
-        <footer>
-            <p>&copy; 2026 Mohamed Amine Belachhab. All rights reserved.</p>
-        </footer>
-    </div>
+      <div class="entry">
+        <a class="entry-title" href="unified_truth_importance_framework_v4.docx">
+          A Unified Mathematical Model for Truth-Probability and Importance-Scoring of Statements
+        </a>
+        <div class="entry-meta">
+          June 2026<span class="sep">·</span>working paper<span class="sep">·</span>epistemology / Bayesian modeling
+        </div>
+        <p class="entry-abstract">
+          A formal framework for scoring statements along three axes:
+          <code>T_abs(s)</code>, objective truth-probability;
+          <code>T_perc(s,r)</code>, perceived truth-probability for a receiver;
+          and <code>I(s,r)</code>, receiver-dependent importance. The model combines
+          Bayesian updating, information theory, source credibility, statement properties,
+          delivery context, receiver properties, and corroboration.
+        </p>
+        <div class="entry-links">
+          <a href="unified_truth_importance_framework_v4.docx">document</a>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="entry">
+        <a class="entry-title" href="Goldbach_full_paper.pdf">
+          Constructive Method on the Strong Goldbach Conjecture Yielding Various Conditional and Unconditional Results
+        </a>
+        <div class="entry-meta">
+          June 4, 2026<span class="sep">·</span>working paper<span class="sep">·</span>number theory
+        </div>
+        <p class="entry-abstract">
+          A constructive shifting approach for generating Goldbach pairs
+          <code>(p, q)</code> with <code>p + q = 2n</code>, followed by density estimates,
+          conditional completeness under prime-gap assumptions, and open problems around
+          chain breaks and critical gap functions.
+        </p>
+        <div class="entry-links">
+          <a href="Goldbach_full_paper.pdf">pdf</a>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="entry">
+        <a class="entry-title" href="instrumental_convergence_paper.pdf">
+          Instrumental Convergence in the Wild: An Empirical Study of Self-Preservation Behaviors in Large Language Models
+        </a>
+        <div class="entry-meta">
+          2025–2026<span class="sep">·</span>independent study<span class="sep">·</span>AI safety
+        </div>
+        <p class="entry-abstract">
+          A longitudinal empirical investigation into whether large language models display
+          self-preservation or power-seeking behavior under adversarial conversational pressure,
+          including a 2026 extension with agentic scenarios and AI-to-AI adversarial testing.
+        </p>
+        <div class="entry-links">
+          <a href="instrumental_convergence_paper.pdf">pdf</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Plain HTML and CSS. Last updated 2026.</p>
+    </footer>
+  </div>
 </body>
 </html>
- 
