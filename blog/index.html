@@ -1,44 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Mohamed Amine Belachhab</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Notes — Mohamed Amine Belachhab</title>
+  <meta name="description" content="Notes and short reflections by Mohamed Amine Belachhab." />
+
+  <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <a href="index.html" class="logo">Aminios</a>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="papers.html">Papers</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="blog.html" class="active">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+  <div class="container">
+    <header>
+      <a class="name" href="../index.html">Mohamed Amine Belachhab</a>
+      <span class="tagline">mathematics / epistemology / a little AI safety — Fes, Morocco</span>
 
-        <main>
-            <h1>Notebook & Essays</h1>
-            <p>Casual thoughts, scratchpad proofs, and progress updates on AI safety architecture.</p>
+      <nav>
+        <a href="../index.html">about</a><span class="sep">·</span>
+        <a href="../papers/index.html">papers</a><span class="sep">·</span>
+        <a href="../projects/index.html">projects</a><span class="sep">·</span>
+        <a href="index.html" class="active">notes</a><span class="sep">·</span>
+        <a href="../contact.html">contact</a>
+      </nav>
+    </header>
 
-            <div class="item-card">
-                <span style="color: var(--accent-color); font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Coming Soon</span>
-                <h3 style="margin-top: 0.25rem;">Reflections on AI Alignment and Instrumental Convergence</h3>
-                <p>An informal breakdown of recent safety literature, exploring practical edge cases in objective functions and semantic truth models.</p>
-            </div>
+    <hr />
 
-            <div class="item-card">
-                <span style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Draft</span>
-                <h3 style="margin-top: 0.25rem;">An Elegant Approach to Prime Distributions</h3>
-                <p>Notes from my personal scratchpad regarding bounds and patterns encountered while analyzing classic arithmetic conjectures.</p>
-            </div>
-        </main>
+    <section>
+      <span class="section-label">Notes</span>
 
-        <footer>
-            <p>&copy; 2026 Mohamed Amine Belachhab. All rights reserved.</p>
-        </footer>
-    </div>
+      <p class="small">
+        Occasional notes. No schedule.
+      </p>
+
+      <div class="entry">
+        <a class="entry-title" href="post-1.html">Why I keep old drafts</a>
+        <div class="entry-meta">personal note</div>
+        <p class="entry-abstract">
+          On wrong proofs, buses, old devices, and why unfinished work still belongs in the archive.
+        </p>
+      </div>
+
+      <hr />
+
+      <div class="entry">
+        <span class="entry-title">The problem with truth is that people are not equations</span>
+        <div class="entry-meta">future note</div>
+        <p class="entry-abstract">
+          A note I still need to write about belief, evidence, politics, and why a wrong
+          conclusion can still have an understandable path.
+        </p>
+      </div>
+
+      <hr />
+
+      <div class="entry">
+        <span class="entry-title">Mashmatics</span>
+        <div class="entry-meta">future note</div>
+        <p class="entry-abstract">
+          A joke from a friend, born after football and a bus ride, that somehow became
+          a name for trying things before they are respectable.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Plain HTML and CSS. Last updated 2026.</p>
+    </footer>
+  </div>
 </body>
 </html>
