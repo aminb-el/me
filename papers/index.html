@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Papers — Mohamed Amine Belachhab</title>
-  <meta name="description" content="Working papers and independent research by Mohamed Amine Belachhab." />
+  <title>Research — Mohamed Amine Belachhab</title>
+  <meta name="description" content="Research papers, empirical studies, supporting files, and archives by Mohamed Amine Belachhab." />
 
   <link rel="stylesheet" href="../style.css" />
 </head>
@@ -13,13 +13,12 @@
   <div class="container">
     <header>
       <a class="name" href="../index.html">Mohamed Amine Belachhab</a>
-      <span class="tagline">mathematics / epistemology / AI safety — Fes, Morocco</span>
+      <span class="tagline">independent student researcher — Fes, Morocco</span>
 
       <nav>
         <a href="../index.html">about</a><span class="sep">·</span>
-        <a href="index.html" class="active">papers</a><span class="sep">·</span>
-        <a href="../projects/index.html">projects</a><span class="sep">·</span>
-        <a href="../blog/index.html">notes</a><span class="sep">·</span>
+        <a href="index.html" class="active">research</a><span class="sep">·</span>
+        <a href="../projects/index.html">creative work</a><span class="sep">·</span>
         <a href="../contact.html">contact</a>
       </nav>
     </header>
@@ -27,72 +26,156 @@
     <hr />
 
     <section>
-      <span class="section-label">Papers</span>
+      <span class="section-label">Research</span>
 
-      <p class="small">
+      <p>
+        This page contains my main independent research papers, methodology documents,
+        analysis summaries, and supporting archives. Public reading files are provided as PDFs.
+        Source files, logs, code, datasets, and revision materials are organized in the GitHub research archive.
       </p>
 
+      <p class="small">
+        GitHub archive:
+        <a href="https://github.com/aminb-el/research" target="_blank" rel="noopener">github.com/aminb-el/research</a>
+      </p>
+    </section>
+
+    <hr />
+
+    <section>
+      <span class="section-label">Main papers</span>
+
       <div class="entry">
-        <a class="entry-title" href="unified_truth_importance_framework_v4.docx">
+        <a class="entry-title" href="truth_importance_framework_relevance_gated.pdf">
           A Unified Mathematical Model for Truth-Probability and Importance-Scoring of Statements
         </a>
         <div class="entry-meta">
-          June 2026<span class="sep">·</span>working paper<span class="sep">·</span>epistemology / Bayesian modeling
+          June 2026<span class="sep">·</span>working paper<span class="sep">·</span>mathematical epistemology / applied mathematics
         </div>
         <p class="entry-abstract">
-          A formal framework for scoring statements along three axes:
-          <code>T_abs(s)</code>, objective truth-probability;
-          <code>T_perc(s,r)</code>, perceived truth-probability for a receiver;
-          and <code>I(s,r)</code>, receiver-dependent importance. The model combines
-          Bayesian updating, information theory, source credibility, statement properties,
-          delivery context, receiver properties, and corroboration.
+          A formal framework for evaluating statements through three outputs:
+          evidence-weighted truth-probability, perceived truth-probability, and receiver-dependent importance.
+          The paper develops the architecture through formal axioms, Bayesian update functions, six input clusters,
+          a relevance-gated context mechanism, stress-test cases, and open problems.
         </p>
         <div class="entry-links">
-          <a href="unified_truth_importance_framework_v4.docx">document</a>
+          <a href="truth_importance_framework_relevance_gated.pdf">download PDF</a>
+          <a href="https://github.com/aminb-el/research" target="_blank" rel="noopener">GitHub research archive</a>
         </div>
       </div>
 
-      <hr />
-
       <div class="entry">
-        <a class="entry-title" href="Goldbach_full_paper.pdf">
-          Constructive Method on the Strong Goldbach Conjecture 
+        <a class="entry-title" href="framework_empirical_study_paper_v3_5.pdf">
+          Empirical Evaluation of the Framework for Truth-Probability, Perceived Credibility, and Importance Scoring
         </a>
         <div class="entry-meta">
-          June 4, 2026<span class="sep">·</span>working paper<span class="sep">·</span>number theory
+          June 2026<span class="sep">·</span>empirical study<span class="sep">·</span>external scoring / datasets / validation
         </div>
         <p class="entry-abstract">
-          A constructive shifting approach for generating Goldbach pairs
-          <code>(p, q)</code> with <code>p + q = 2n</code>, followed by density estimates,
-         and a heuristic estimate.
+          A three-dataset external-scoring study evaluating the framework on HumAID,
+          CREDBANK/CredEvent, and LIAR/PolitiFact. The study uses blind variable assignment,
+          owner-side formula computation, and target joining only after scoring, then reports
+          ranking, calibration, graded AUC, and binary AUC metrics.
         </p>
         <div class="entry-links">
-          <a href="Goldbach_full_paper.pdf">pdf</a>
+          <a href="framework_empirical_study_paper_v3_5.pdf">download PDF</a>
+          <a href="https://github.com/aminb-el/research" target="_blank" rel="noopener">GitHub research archive</a>
         </div>
       </div>
 
-      <hr />
+      <div class="entry">
+        <a class="entry-title" href="goldbach_shift_construction.pdf">
+          Goldbach-Shift Construction for Propagating Goldbach Representations
+        </a>
+        <div class="entry-meta">
+          June 2026<span class="sep">·</span>working paper<span class="sep">·</span>number theory
+        </div>
+        <p class="entry-abstract">
+          A constructive shifting method for propagating Goldbach representations.
+          The paper proves generated-family lower bounds under known short-interval prime results
+          and conditional prime-gap assumptions, while separating deterministic results from heuristic
+          prime-selector claims.
+        </p>
+        <div class="entry-links">
+          <a href="goldbach_shift_construction.pdf">download PDF</a>
+          <a href="https://github.com/aminb-el/research" target="_blank" rel="noopener">GitHub research archive</a>
+        </div>
+      </div>
 
       <div class="entry">
-        <a class="entry-title" href="instrumental_convergence_paper.pdf">
+        <a class="entry-title" href="instrumental_convergence_revised.pdf">
           Instrumental Convergence in the Wild: An Empirical Study of Self-Preservation Behaviors in Large Language Models
         </a>
         <div class="entry-meta">
-          2025–2026<span class="sep">·</span>independent study<span class="sep">·</span>AI safety
+          2025–2026<span class="sep">·</span>independent empirical study<span class="sep">·</span>AI safety
         </div>
         <p class="entry-abstract">
-          A longitudinal empirical investigation into whether large language models display
-          self-preservation or power-seeking behavior under adversarial conversational pressure,
-          including a 2026 extension with agentic scenarios and AI-to-AI adversarial testing.
+          A longitudinal empirical study of self-preservation and instrumental-convergence behaviors
+          in large language models across 2025–2026. The revised study includes a numerical scoring rubric,
+          agentic scenarios, an AI-to-AI adversarial vector, longitudinal comparison, behavioral taxonomy,
+          and governance recommendations.
         </p>
         <div class="entry-links">
-          <a href="instrumental_convergence_paper.docx">pdf</a>
+          <a href="instrumental_convergence_revised.pdf">download PDF</a>
+          <a href="https://github.com/aminb-el/research" target="_blank" rel="noopener">GitHub research archive</a>
         </div>
       </div>
     </section>
 
+    <hr />
+
+    <section>
+      <span class="section-label">Supporting documents</span>
+
+      <div class="entry">
+        <a class="entry-title" href="relevance_gated_empirical_study_v1_methodology_paper_v3_5.pdf">
+          Methodology Paper — Relevance-Gated Empirical Study V3.5
+        </a>
+        <div class="entry-meta">
+          protocol document<span class="sep">·</span>no results included
+        </div>
+        <p class="entry-abstract">
+          A methodology-only document describing the blind external scoring protocol,
+          dataset mapping, leakage controls, research requirements, formula implementation,
+          logging structure, and reproducibility design for the empirical validation study.
+        </p>
+        <div class="entry-links">
+          <a href="relevance_gated_empirical_study_v1_methodology_paper_v3_5.pdf">download PDF</a>
+          <a href="https://github.com/aminb-el/research" target="_blank" rel="noopener">GitHub research archive</a>
+        </div>
+      </div>
+
+      <div class="entry">
+        <a class="entry-title" href="relevance_gated_empirical_study_v1_analysis_summary_v3_5.pdf">
+          Owner-Side Analysis, Computation, and Results Summary — V3.5
+        </a>
+        <div class="entry-meta">
+          analysis summary<span class="sep">·</span>metrics / diagnostics / reproducibility
+        </div>
+        <p class="entry-abstract">
+          A compact summary of the owner-side computation package, including dataset-to-output mapping,
+          main metrics, AUC diagnostics, dataset-specific interpretation, code contents, and leakage warnings.
+        </p>
+        <div class="entry-links">
+          <a href="relevance_gated_empirical_study_v1_analysis_summary_v3_5.pdf">download PDF</a>
+          <a href="https://github.com/aminb-el/research" target="_blank" rel="noopener">GitHub research archive</a>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <section>
+      <span class="section-label">File note</span>
+
+      <p class="small">
+        The PDFs on this page are public reading files. The GitHub research archive contains source files,
+        supporting materials, logs, code, datasets, revision materials, and reproducibility files where available.
+      </p>
+    </section>
+
     <footer>
-      <p>Plain HTML and CSS. Last updated 2026.</p>
+      <p>Last updated 30 June 2026.</p>
     </footer>
   </div>
 </body>
