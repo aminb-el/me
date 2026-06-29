@@ -127,7 +127,9 @@ a:hover {
 }
 
 .entry-links a {
+  display: inline-block;
   margin-right: 12px;
+  margin-bottom: 4px;
 }
 
 .small {
