@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Framework Architecture — Truth / Importance Portfolio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ffffff;
+      color: #171717;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 70px 24px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    h2 {
+      margin: 48px 0 16px;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.75;
+      margin: 0 0 22px;
+    }
+
+    .intro {
+      color: #555555;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .skip-box {
+      border-top: 1px solid #d9d9d9;
+      border-bottom: 1px solid #d9d9d9;
+      padding: 22px 0;
+      margin-bottom: 48px;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .skip-button,
+    .continue-button {
+      display: inline-block;
+      margin-top: 14px;
+      color: #171717;
+      text-decoration: none;
+      border: 1px solid #171717;
+      padding: 11px 20px;
+      font-size: 15px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .skip-button:hover,
+    .skip-button:focus,
+    .continue-button:hover,
+    .continue-button:focus {
+      background: #171717;
+      color: #ffffff;
+    }
+
+    .architecture {
+      margin: 34px 0;
+      border-top: 1px solid #d9d9d9;
+    }
+
+    .cluster {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .cluster-number {
+      font-size: 14px;
+      color: #666666;
+    }
+
+    .cluster-name {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .cluster-description {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #444444;
+    }
+
+    .flow {
+      margin: 34px 0;
+      padding: 26px 0;
+      border-top: 1px solid #d9d9d9;
+      border-bottom: 1px solid #d9d9d9;
+      text-align: center;
+      font-size: 17px;
+      line-height: 2;
+    }
+
+    .arrow {
+      color: #888888;
+      padding: 0 8px;
+    }
+
+    .outputs {
+      margin: 28px 0 0;
+    }
+
+    .output {
+      padding: 18px 0;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .output:first-child {
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .output-symbol {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .output-description {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #444444;
+    }
+
+    .important-note {
+      margin-top: 36px;
+      padding-left: 18px;
+      border-left: 2px solid #222222;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .continue {
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid #d9d9d9;
+    }
+
+    .back {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .back a {
+      color: #666666;
+      text-decoration: none;
+    }
+
+    .back a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .cluster {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+
+    <h1>How the Framework Is Structured</h1>
+
+    <p class="intro">
+      The framework begins with atomic variables, organizes them into six
+      input clusters, derives intermediate scores, and then computes three
+      separate outputs.
+    </p>
+
+    <div class="skip-box">
+      <strong>Already familiar with the architecture?</strong><br>
+      If you have already reviewed how the framework is structured,
+      you can move directly to the worked example.
+
+      <br>
+
+      <a class="skip-button" href="worked-example.html">
+        Skip architecture →
+      </a>
+    </div>
+
+    <p>
+      A statement is not evaluated through one undifferentiated score.
+      Instead, information about the source, the statement, its delivery,
+      its surrounding situation, the receiver, and the available evidence
+      is kept structurally separate.
+    </p>
+
+    <div class="architecture">
+
+      <div class="cluster">
+        <div class="cluster-number">Cluster 1</div>
+
+        <div>
+          <div class="cluster-name">Source Credibility</div>
+          <div class="cluster-description">
+            Bias, expertise, rank relative to the receiver, and stated confidence.
+            These variables are combined into the source credibility term
+            <strong>Cred(s)</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="cluster">
+        <div class="cluster-number">Cluster 2</div>
+
+        <div>
+          <div class="cluster-name">Statement Properties</div>
+          <div class="cluster-description">
+            Novelty, internal consistency, falsifiability, and specificity.
+            These become the statement term <strong>Stmt(s)</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="cluster">
+        <div class="cluster-number">Cluster 3</div>
+
+        <div>
+          <div class="cluster-name">Delivery Context</div>
+          <div class="cluster-description">
+            Language register, tone, nonverbal presentation, timing,
+            location, and public/private setting. These form
+            <strong>Deliv(s,r)</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="cluster">
+        <div class="cluster-number">Cluster 4</div>
+
+        <div>
+          <div class="cluster-name">Situational Context</div>
+          <div class="cluster-description">
+            The surrounding situation, speaker stakes, audience composition,
+            opposing voices, broad stakes, and statement-to-context relevance.
+            The relevance gate determines how much of the surrounding context
+            genuinely belongs to the statement.
+          </div>
+        </div>
+      </div>
+
+      <div class="cluster">
+        <div class="cluster-number">Cluster 5</div>
+
+        <div>
+          <div class="cluster-name">Receiver Properties</div>
+          <div class="cluster-description">
+            Novelty to the receiver, prior knowledge, relationship to the speaker,
+            cognitive or emotional state, and personal consequence.
+            These variables make perceived truth and importance receiver-dependent.
+          </div>
+        </div>
+      </div>
+
+      <div class="cluster">
+        <div class="cluster-number">Cluster 6</div>
+
+        <div>
+          <div class="cluster-name">Corroboration and Evidence</div>
+          <div class="cluster-description">
+            Independent corroborating sources, consistency with established
+            knowledge, and physical or empirical evidence.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <h2>From atomic variables to outputs</h2>
+
+    <p>
+      The atomic variables are not the final scores. The formula engine first
+      combines them into derived quantities such as source credibility,
+      statement quality, delivery, situational context, and receiver response.
+      These values then enter sequential Bayesian updates.
+    </p>
+
+    <div class="flow">
+      Atomic variables
+      <span class="arrow">→</span>
+      Derived cluster scores
+      <span class="arrow">→</span>
+      Bayesian updates
+      <span class="arrow">→</span>
+      Final outputs
+    </div>
+
+    <h2>The three outputs</h2>
+
+    <div class="outputs">
+
+      <div class="output">
+        <div class="output-symbol">
+          T<sub>abs</sub>(s)
+        </div>
+
+        <div class="output-description">
+          The evidence-weighted truth value. It uses the source,
+          statement properties, and available corroborating evidence.
+          It does not depend on the receiver.
+        </div>
+      </div>
+
+      <div class="output">
+        <div class="output-symbol">
+          T<sub>perc</sub>(s,r)
+        </div>
+
+        <div class="output-description">
+          The perceived-truth value for a particular receiver.
+          It begins from T<sub>abs</sub> and then incorporates delivery,
+          situational context, and receiver properties.
+        </div>
+      </div>
+
+      <div class="output">
+        <div class="output-symbol">
+          I(s,r)
+        </div>
+
+        <div class="output-description">
+          The importance value for a particular receiver.
+          Importance is computed separately rather than treating truth as
+          equivalent to consequence.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="important-note">
+      The central distinction is simple: how well a statement is supported,
+      how believable it appears to a particular person, and how much it matters
+      to that person are three different questions.
+    </div>
+
+    <div class="continue">
+      <a class="continue-button" href="worked-example.html">
+        Continue to the worked example →
+      </a>
+    </div>
+
+    <div class="back">
+      <a href="overview.html">← Back to project overview</a>
+    </div>
+
+  </main>
+
+</body>
+</html>
