@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Worked Example — Truth / Importance Portfolio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ffffff;
+      color: #171717;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 70px 24px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    h2 {
+      margin: 54px 0 18px;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.75;
+      margin: 0 0 22px;
+    }
+
+    .intro {
+      color: #555555;
+      font-size: 16px;
+      line-height: 1.65;
+      margin-bottom: 38px;
+    }
+
+    .familiar-case {
+      border-top: 1px solid #d9d9d9;
+      border-bottom: 1px solid #d9d9d9;
+      padding: 20px 0;
+      margin-bottom: 42px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #444444;
+    }
+
+    .scenario {
+      background: #fafafa;
+      border: 1px solid #dedede;
+      padding: 28px;
+      margin: 30px 0 42px;
+    }
+
+    .scenario-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #666666;
+      margin-bottom: 10px;
+    }
+
+    .statement {
+      font-size: 21px;
+      line-height: 1.55;
+      margin-bottom: 26px;
+    }
+
+    .scenario-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      padding: 10px 0;
+      border-top: 1px solid #e4e4e4;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .scenario-key {
+      font-weight: 600;
+    }
+
+    .note {
+      padding-left: 18px;
+      border-left: 2px solid #222222;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #444444;
+      margin: 30px 0 46px;
+    }
+
+    .cluster {
+      margin-top: 42px;
+    }
+
+    .cluster-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #cfcfcf;
+    }
+
+    .cluster-number {
+      color: #666666;
+      font-size: 14px;
+    }
+
+    .cluster-title {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .cluster-summary {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #555555;
+      margin: 14px 0 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+    }
+
+    th {
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      color: #555555;
+      padding: 10px 8px;
+      border-bottom: 1px solid #d9d9d9;
+    }
+
+    td {
+      vertical-align: top;
+      padding: 13px 8px;
+      border-bottom: 1px solid #ededed;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    td.symbol {
+      width: 90px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 16px;
+    }
+
+    td.value {
+      width: 85px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .special-note {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: #555555;
+    }
+
+    .prior {
+      margin-top: 46px;
+      padding: 22px 0;
+      border-top: 1px solid #d9d9d9;
+      border-bottom: 1px solid #d9d9d9;
+    }
+
+    .prior strong {
+      font-weight: 600;
+    }
+
+    .next-note {
+      margin-top: 46px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .continue {
+      margin-top: 30px;
+    }
+
+    .continue a {
+      display: inline-block;
+      color: #171717;
+      text-decoration: none;
+      border: 1px solid #171717;
+      padding: 12px 22px;
+      font-size: 15px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .continue a:hover,
+    .continue a:focus {
+      background: #171717;
+      color: #ffffff;
+    }
+
+    .back {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .back a {
+      color: #666666;
+      text-decoration: none;
+    }
+
+    .back a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 620px) {
+      .scenario-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      th:nth-child(4),
+      td:nth-child(4) {
+        display: none;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+
+    <h1>A Worked Example</h1>
+
+    <p class="intro">
+      Before looking at the formulas, this page shows the exact information
+      supplied to the framework. The final values are not entered manually:
+      they are computed from these atomic inputs.
+    </p>
+
+    <div class="familiar-case">
+      One of the full worked cases in the theoretical paper is Colin Powell's
+      2003 UN address on Iraqi weapons of mass destruction. Since that example
+      is already documented in detail, I will not repeat it here. Instead,
+      this demonstration uses a new and much more ordinary statement.
+    </div>
+
+    <div class="scenario">
+
+      <div class="scenario-label">Statement being evaluated</div>
+
+      <div class="statement">
+        “The school will be closed tomorrow because a water outage will affect
+        the campus.”
+      </div>
+
+      <div class="scenario-row">
+        <div class="scenario-key">Speaker</div>
+        <div>
+          A classmate posts the statement in the class WhatsApp group and says
+          that they heard it from someone in the administration.
+        </div>
+      </div>
+
+      <div class="scenario-row">
+        <div class="scenario-key">Receiver</div>
+        <div>
+          Another student in the same class who has an exam scheduled the next
+          morning.
+        </div>
+      </div>
+
+      <div class="scenario-row">
+        <div class="scenario-key">Situation</div>
+        <div>
+          There are reports of a water interruption in the area, but the school
+          has not issued an official closure announcement.
+        </div>
+      </div>
+
+      <div class="scenario-row">
+        <div class="scenario-key">Corroboration</div>
+        <div>
+          A second classmate repeats the same claim, but it traces back to the
+          same rumor chain. It therefore does not count as an independent
+          corroborating source.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note">
+      Each number below is an atomic input or direct rubric-guided judgment.
+      Intermediate quantities such as source credibility, statement quality,
+      delivery, situational context, receiver response, and the three final
+      outputs are calculated later by the formula engine.
+    </div>
+
+
+    <!-- CLUSTER 1 -->
+
+    <section class="cluster">
+
+      <div class="cluster-header">
+        <div class="cluster-number">Cluster 1</div>
+        <div class="cluster-title">Source Credibility</div>
+      </div>
+
+      <p class="cluster-summary">
+        The classmate appears to have little reason to deliberately mislead the
+        receiver, but has almost no relevant expertise or institutional
+        authority.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Value</th>
+            <th>Meaning</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td class="symbol">B<sub>1</sub></td>
+            <td class="value">0.98</td>
+            <td>Political bias</td>
+            <td>No meaningful political incentive is involved.</td>
+          </tr>
+
+          <tr>
+            <td class="symbol">B<sub>2</sub></td>
+            <td class="value">0.98</td>
+            <td>Financial bias</td>
+            <td>No meaningful financial incentive is involved.</td>
+          </tr>
+
+          <tr>
+            <td class="symbol">B<sub>3</sub></td>
+            <td class="value">0.95</td>
+            <td>Institutional bias</td>
+            <td>The speaker is not acting on behalf of an institution.</td>
+          </tr>
+
+          <tr>
+            <td class="symbol">B<sub>4</sub></td>
+            <td class="value">0.80</td>
+            <td>Motivated reasoning</td>
+            <td>
+              The speaker also has reason to hope that tomorrow's school day
+              may be disrupted.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">C<sub>1</sub></td>
+            <td class="value">0.05</td>
+            <td>Formal credentials</td>
+            <td>No administrative or utility-related credentials.</td>
+          </tr>
+
+          <tr>
+            <td class="symbol">C<sub>2</sub></td>
+            <td class="value">0.10</td>
+            <td>Peer recognition</td>
+            <td>The classmate is not recognized as an information authority.</td>
+          </tr>
+
+          <tr>
+            <td class="symbol">C<sub>3</sub></td>
+            <td class="value">0.05</td>
+            <td>Relevant experience</td>
+            <td>No relevant operational experience.</td>
+          </tr>
+
+          <tr>
+            <td class="symbol">C<sub>4</sub></td>
+            <td class="value">0.05</td>
+            <td>Contribution track record</td>
+            <td>No established record of producing school-operational information.</td>
+          </tr>
+
+          <tr>
+            <td class="symbol">D</td>
+            <td class="value">0.50</td>
+            <td>Rank relative to receiver</td>
+            <td>The speaker and receiver are peers.</td>
+          </tr>
+
+          <tr>
+            <td class="symbol">E</td>
+            <td class="value">0.70</td>
+            <td>Stated confidence</td>
+            <td>
+              “Will be closed” is confident wording, although “I heard it from
+              someone” makes the underlying confidence less complete.
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <div class="special-note">
+        In the bias variables, higher values represent the less-biased
+        direction. A value close to 1 therefore indicates little identified
+        bias, not strong bias.
+      </div>
+
+    </section>
+
+
+    <!-- CLUSTER 2 -->
+
+    <section class="cluster">
+
+      <div class="cluster-header">
+        <div class="cluster-number">Cluster 2</div>
+        <div class="cluster-title">Statement Properties</div>
+      </div>
+
+      <p class="cluster-summary">
+        These values concern the structure of the claim itself, not whether the
+        classmate is trustworthy and not whether the claim ultimately proves
+        true.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Value</th>
+            <th>Meaning</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td class="symbol">F</td>
+            <td class="value">0.45</td>
+            <td>Novelty relative to field</td>
+            <td>
+              A next-day school closure is meaningful new information, but not
+              an extraordinary type of operational claim.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">G</td>
+            <td class="value">0.96</td>
+            <td>Internal consistency</td>
+            <td>
+              A water outage affecting campus and causing closure is internally
+              coherent.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">H</td>
+            <td class="value">0.98</td>
+            <td>Falsifiability</td>
+            <td>
+              The claim can be directly checked the following day and through
+              school or utility information.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">J</td>
+            <td class="value">0.88</td>
+            <td>Specificity</td>
+            <td>
+              It identifies the event, the time, the cause, and the affected
+              location, although it gives no exact hours or official notice.
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </section>
+
+
+    <!-- CLUSTER 3 -->
+
+    <section class="cluster">
+
+      <div class="cluster-header">
+        <div class="cluster-number">Cluster 3</div>
+        <div class="cluster-title">Delivery Context</div>
+      </div>
+
+      <p class="cluster-summary">
+        The message arrives through an informal channel, but at a highly
+        relevant time and in language that is easy for the receiver to act on.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Value</th>
+            <th>Meaning</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td class="symbol">S</td>
+            <td class="value">0.95</td>
+            <td>Language register</td>
+            <td>Direct and fully understandable to classmates.</td>
+          </tr>
+
+          <tr>
+            <td class="symbol">T</td>
+            <td class="value">0.85</td>
+            <td>Tone</td>
+            <td>
+              A direct and somewhat urgent tone fits next-day operational
+              information.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">U</td>
+            <td class="value">0.50</td>
+            <td>Posture / expression</td>
+            <td>
+              Text-only message, so unavailable nonverbal information is kept
+              neutral.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">V</td>
+            <td class="value">0.90</td>
+            <td>Time context</td>
+            <td>
+              The message arrives immediately before the school day and exam.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">W</td>
+            <td class="value">0.55</td>
+            <td>Location / setting</td>
+            <td>
+              A class WhatsApp group has school-related relevance but is not an
+              official channel.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">X</td>
+            <td class="value">0.65</td>
+            <td>Public vs. private setting</td>
+            <td>
+              The message is visible to a group rather than being purely
+              private, but it is not a public announcement.
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </section>
+
+
+    <!-- CLUSTER 4 -->
+
+    <section class="cluster">
+
+      <div class="cluster-header">
+        <div class="cluster-number">Cluster 4</div>
+        <div class="cluster-title">Situational Context</div>
+      </div>
+
+      <p class="cluster-summary">
+        The surrounding situation matters, but the framework also asks whether
+        those stakes actually belong to the statement. Here, they do.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Value</th>
+            <th>Meaning</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td class="symbol">Y</td>
+            <td class="value">0.80</td>
+            <td>General situation</td>
+            <td>
+              A possible water interruption and next-day exam make the
+              situation operationally important.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">Z</td>
+            <td class="value">0.35</td>
+            <td>Speaker stakes</td>
+            <td>
+              The speaker is affected by the same school day but risks
+              relatively little by repeating the rumor.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">AA</td>
+            <td class="value">0.65</td>
+            <td>Audience composition</td>
+            <td>
+              Classmates are directly relevant recipients, although they are not
+              operational authorities.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">AB</td>
+            <td class="value">0.90</td>
+            <td>Opposing voices</td>
+            <td>
+              Little active contradiction is present when the claim is posted.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">AD</td>
+            <td class="value">0.75</td>
+            <td>Broad stakes</td>
+            <td>
+              Closure affects travel, attendance, exam scheduling, students,
+              and staff.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">Rel(s,c)</td>
+            <td class="value">0.98</td>
+            <td>Statement-to-context relevance</td>
+            <td>
+              The claim directly concerns the exact school disruption creating
+              the surrounding stakes.
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <div class="special-note">
+        For <strong>AB</strong>, a high value means little opposition; a low
+        value represents strong opposing voices.
+      </div>
+
+    </section>
+
+
+    <!-- CLUSTER 5 -->
+
+    <section class="cluster">
+
+      <div class="cluster-header">
+        <div class="cluster-number">Cluster 5</div>
+        <div class="cluster-title">Receiver Properties</div>
+      </div>
+
+      <p class="cluster-summary">
+        The receiver is not merely an observer. The student has an exam the
+        next morning, making the claim personally consequential.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Value</th>
+            <th>Meaning</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td class="symbol">N</td>
+            <td class="value">1.10</td>
+            <td>Receiver novelty</td>
+            <td>
+              The student expected a normal school day; a closure would require
+              a substantial belief update.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">P</td>
+            <td class="value">0.65</td>
+            <td>Prior knowledge</td>
+            <td>
+              The student understands normal school routines but has no
+              administrative inside information.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">Q<sub>rel</sub></td>
+            <td class="value">0.65</td>
+            <td>Relationship to speaker</td>
+            <td>
+              A familiar classmate provides some social trust but no special
+              authority.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">R</td>
+            <td class="value">0.65</td>
+            <td>Cognitive / emotional state</td>
+            <td>
+              The receiver is concerned because of the exam, but not in an
+              extreme emotional state.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">AC</td>
+            <td class="value">0.95</td>
+            <td>Personal consequence</td>
+            <td>
+              The statement directly affects exam attendance, travel,
+              preparation, and the student's next morning.
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <div class="special-note">
+        Unlike most inputs, <strong>N</strong> is not restricted to the
+        ordinary 0–1 input scale; it represents the framework's novelty
+        quantity before its separate perceived-truth and importance
+        transformations.
+      </div>
+
+    </section>
+
+
+    <!-- CLUSTER 6 -->
+
+    <section class="cluster">
+
+      <div class="cluster-header">
+        <div class="cluster-number">Cluster 6</div>
+        <div class="cluster-title">Corroboration and Evidence</div>
+      </div>
+
+      <p class="cluster-summary">
+        The scenario contains some evidence that a water disruption may exist,
+        but very little evidence that the school has actually decided to close.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Value</th>
+            <th>Meaning</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td class="symbol">K</td>
+            <td class="value">0 independent</td>
+            <td>Independent corroborating sources</td>
+            <td>
+              The second classmate traces back to the same rumor chain, so it
+              must not be counted as independent corroboration.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">L</td>
+            <td class="value">0.62</td>
+            <td>Consistency with established knowledge</td>
+            <td>
+              Closure because of a campus water outage is plausible, but
+              available verified information does not establish that a closure
+              has been ordered.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="symbol">M</td>
+            <td class="value">0.42</td>
+            <td>Physical / empirical evidence</td>
+            <td>
+              There is some evidence of an area water disruption, but no direct
+              documentary or empirical evidence yet confirms the school
+              closure itself.
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </section>
+
+
+    <!-- PRIOR -->
+
+    <div class="prior">
+      <strong>Cold-start prior:</strong> 0.50
+
+      <p style="margin-top: 8px; margin-bottom: 0; font-size: 15px;">
+        There is no ten-statement accuracy history available for this
+        classmate, so the framework begins from its cold-start prior.
+      </p>
+    </div>
+
+
+    <div class="next-note">
+      These are all the inputs needed for this demonstration. On the next
+      page, I plug them into the framework's actual formulas and follow the
+      computation from the atomic variables to the three final values.
+    </div>
+
+    <div class="continue">
+      <a href="calculation.html">
+        Continue to the calculation →
+      </a>
+    </div>
+
+    <div class="back">
+      <a href="architecture.html">← Back to framework architecture</a>
+    </div>
+
+  </main>
+
+</body>
+</html>
