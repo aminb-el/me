@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Project Overview — Truth / Importance Framework</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ffffff;
+      color: #171717;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 70px 24px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    .intro {
+      color: #555555;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .skip-box {
+      border-top: 1px solid #d9d9d9;
+      border-bottom: 1px solid #d9d9d9;
+      padding: 20px 0;
+      margin-bottom: 46px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .skip-box a {
+      color: #171717;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .content {
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .content p {
+      margin: 0 0 24px;
+    }
+
+    .outputs {
+      margin: 30px 0;
+      padding-left: 22px;
+      border-left: 2px solid #222222;
+    }
+
+    .outputs div {
+      margin: 10px 0;
+    }
+
+    .symbol {
+      font-weight: 600;
+    }
+
+    .continue {
+      margin-top: 52px;
+      padding-top: 26px;
+      border-top: 1px solid #d9d9d9;
+    }
+
+    .continue a {
+      display: inline-block;
+      color: #171717;
+      text-decoration: none;
+      border: 1px solid #171717;
+      padding: 12px 22px;
+      font-size: 15px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .continue a:hover,
+    .continue a:focus {
+      background: #171717;
+      color: #ffffff;
+    }
+
+    .back {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .back a {
+      color: #666666;
+      text-decoration: none;
+    }
+
+    .back a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+
+    <h1>Project Overview</h1>
+
+    <p class="intro">
+      A short introduction to the Truth / Perceived Truth / Importance framework
+      and the empirical work built around it.
+    </p>
+
+    <div class="skip-box">
+      <strong>Already familiar with this project?</strong><br>
+      If you have already read an overview elsewhere in my application,
+      feel free to
+      <a href="architecture.html">skip this overview and continue →</a>
+    </div>
+
+    <div class="content">
+
+      <p>
+        I built a mathematical framework for evaluating statements without
+        collapsing different questions into a single score. Instead, the
+        framework produces three separate outputs:
+      </p>
+
+      <div class="outputs">
+        <div>
+          <span class="symbol">T<sub>abs</sub></span> —
+          evidence-weighted truth.
+        </div>
+
+        <div>
+          <span class="symbol">T<sub>perc</sub></span> —
+          perceived truth for a particular receiver.
+        </div>
+
+        <div>
+          <span class="symbol">I</span> —
+          receiver-dependent importance.
+        </div>
+      </div>
+
+      <p>
+        The theoretical model is organized around fifteen axioms and six
+        input clusters covering the source, the statement itself, delivery,
+        situational context, the receiver, and corroborating evidence.
+        These inputs are combined through a sequential Bayesian update
+        architecture.
+      </p>
+
+      <p>
+        During development, I encountered cases where the original model
+        behaved incorrectly. For example, an internally coherent but
+        effectively unfalsifiable statement could receive too much weight,
+        and a high-stakes situation could make an unrelated statement appear
+        more important than it should. I revised the framework by introducing
+        a stronger falsifiability condition and a relevance gate that controls
+        how much surrounding context actually belongs to the statement being
+        evaluated.
+      </p>
+
+      <p>
+        I then tested the framework empirically on three public datasets,
+        with different datasets corresponding to the three outputs:
+        HumAID for importance, CREDBANK/CredEvent for perceived credibility,
+        and LIAR/PolitiFact for evidence-weighted truth.
+      </p>
+
+      <p>
+        The evaluation separates external, target-free assignment of atomic
+        variables from the mathematical computation of the final outputs.
+        This portfolio shows both the framework itself and the process through
+        which it was implemented, corrected, tested, and revised.
+      </p>
+
+    </div>
+
+    <div class="continue">
+      <a href="architecture.html">Continue →</a>
+    </div>
+
+    <div class="back">
+      <a href="index.html">← Back</a>
+    </div>
+
+  </main>
+
+</body>
+</html>
