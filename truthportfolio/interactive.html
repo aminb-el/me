@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Live Framework — Truth / Importance Portfolio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ffffff;
+      color: #171717;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 70px 24px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.75;
+      margin: 0 0 22px;
+    }
+
+    .intro {
+      color: #555555;
+      font-size: 16px;
+      line-height: 1.65;
+      margin-bottom: 34px;
+    }
+
+    .statement-box {
+      border-top: 1px solid #d8d8d8;
+      border-bottom: 1px solid #d8d8d8;
+      padding: 22px 0;
+      margin-bottom: 34px;
+    }
+
+    .statement-label {
+      font-size: 13px;
+      color: #666666;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 9px;
+    }
+
+    .statement {
+      font-size: 19px;
+      line-height: 1.55;
+    }
+
+    .instructions {
+      padding: 22px 0;
+      border-bottom: 1px solid #d8d8d8;
+      margin-bottom: 36px;
+    }
+
+    .instructions p {
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .try-box {
+      margin-top: 18px;
+      padding-left: 18px;
+      border-left: 2px solid #222222;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .outputs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 30px 0;
+    }
+
+    .output {
+      border: 1px solid #d9d9d9;
+      padding: 20px;
+    }
+
+    .output-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .output-value {
+      font-size: 30px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .output-description {
+      color: #666666;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 10px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0 38px;
+    }
+
+    button {
+      appearance: none;
+      background: #ffffff;
+      color: #171717;
+      border: 1px solid #171717;
+      padding: 11px 19px;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    button:hover,
+    button:focus {
+      background: #171717;
+      color: #ffffff;
+    }
+
+    button.secondary {
+      border-color: #aaaaaa;
+      color: #555555;
+    }
+
+    button.secondary:hover,
+    button.secondary:focus {
+      border-color: #171717;
+      color: #ffffff;
+    }
+
+    .status {
+      min-height: 20px;
+      margin-top: -22px;
+      margin-bottom: 28px;
+      font-size: 13px;
+      color: #666666;
+    }
+
+    details {
+      border-top: 1px solid #d8d8d8;
+    }
+
+    details:last-of-type {
+      border-bottom: 1px solid #d8d8d8;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 19px 0;
+      font-size: 17px;
+      font-weight: 600;
+      list-style-position: outside;
+    }
+
+    .cluster-content {
+      padding: 0 0 26px;
+    }
+
+    .cluster-note {
+      color: #666666;
+      font-size: 14px;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .variable-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 24px;
+    }
+
+    .variable {
+      display: grid;
+      grid-template-columns: 1fr 105px;
+      gap: 14px;
+      align-items: center;
+      min-height: 50px;
+      padding: 8px 0;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .variable-label {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .symbol {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 600;
+      margin-right: 5px;
+    }
+
+    .variable input {
+      width: 100%;
+      padding: 8px 9px;
+      border: 1px solid #bdbdbd;
+      background: #ffffff;
+      color: #171717;
+      font: inherit;
+      font-size: 14px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .suggested {
+      background: #fafafa;
+      margin-left: -10px;
+      margin-right: -10px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .suggested-tag {
+      display: block;
+      color: #555555;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 3px;
+    }
+
+    .derived {
+      margin-top: 38px;
+      border-top: 1px solid #d8d8d8;
+      padding-top: 24px;
+    }
+
+    .derived h2 {
+      font-size: 20px;
+      margin: 0 0 18px;
+    }
+
+    .derived-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px 24px;
+    }
+
+    .derived-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      border-bottom: 1px solid #eeeeee;
+      padding: 9px 0;
+      font-size: 13px;
+    }
+
+    .derived-row span:last-child {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    .continue-area {
+      margin-top: 50px;
+      padding-top: 28px;
+      border-top: 1px solid #d8d8d8;
+    }
+
+    .continue-area p {
+      font-size: 15px;
+      color: #555555;
+    }
+
+    .continue-link {
+      display: inline-block;
+      color: #171717;
+      text-decoration: none;
+      border: 1px solid #171717;
+      padding: 12px 22px;
+      font-size: 15px;
+    }
+
+    .continue-link:hover,
+    .continue-link:focus {
+      background: #171717;
+      color: #ffffff;
+    }
+
+    .back {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .back a {
+      color: #666666;
+      text-decoration: none;
+    }
+
+    .back a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 760px) {
+      .outputs,
+      .derived-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .variable-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<main>
+
+  <h1>Try the Framework Yourself</h1>
+
+  <p class="intro">
+    The values from the worked example are already loaded below.
+    Change any atomic input you want, then run the framework again.
+  </p>
+
+  <div class="statement-box">
+    <div class="statement-label">Statement</div>
+    <div class="statement">
+      “The school will be closed tomorrow because a water outage will affect
+      the campus.”
+    </div>
+  </div>
+
+
+  <div class="instructions">
+
+    <p>
+      There is no intended “correct” experiment here. You can change one value,
+      several values, or rebuild the scenario entirely.
+    </p>
+
+    <div class="try-box">
+      If you only try two variables, I especially recommend:
+      <strong>Falsifiability (H)</strong> and
+      <strong>Relevance (Rel(s,c))</strong>.
+
+      <br><br>
+
+      Try moving <strong>H</strong> toward 0 and watch the three outputs.
+
+      <br>
+
+      Then restore the example and change only
+      <strong>Rel(s,c)</strong>. Notice which output does not move.
+    </div>
+
+  </div>
+
+
+  <!-- OUTPUTS -->
+
+  <div class="outputs">
+
+    <div class="output">
+      <div class="output-name">
+        T<sub>abs</sub>(s)
+      </div>
+
+      <div class="output-value" id="outTabs">
+        0.3246
+      </div>
+
+      <div class="output-description">
+        Truth value
+      </div>
+    </div>
+
+    <div class="output">
+      <div class="output-name">
+        T<sub>perc</sub>(s,r)
+      </div>
+
+      <div class="output-value" id="outTperc">
+        0.8918
+      </div>
+
+      <div class="output-description">
+        Perceived-truth value
+      </div>
+    </div>
+
+    <div class="output">
+      <div class="output-name">
+        I(s,r)
+      </div>
+
+      <div class="output-value" id="outI">
+        0.9833
+      </div>
+
+      <div class="output-description">
+        Importance value
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="controls">
+    <button type="button" id="runButton">
+      Run framework
+    </button>
+
+    <button type="button" class="secondary" id="resetButton">
+      Restore worked example
+    </button>
+  </div>
+
+  <div class="status" id="status">
+    Worked-example values loaded.
+  </div>
+
+
+  <!-- CLUSTER 1 -->
+
+  <details>
+    <summary>Cluster 1 — Source Credibility</summary>
+
+    <div class="cluster-content">
+
+      <p class="cluster-note">
+        Bias values point in the credibility-positive direction:
+        1 means little identified bias. The four bias and four expertise
+        values are collapsed using uniform weights in this demonstration.
+      </p>
+
+      <div class="variable-grid">
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">B₁</span>
+            Political bias
+          </span>
+          <input id="B1" type="number" min="0" max="1" step="0.01" value="0.98">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">B₂</span>
+            Financial bias
+          </span>
+          <input id="B2" type="number" min="0" max="1" step="0.01" value="0.98">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">B₃</span>
+            Institutional bias
+          </span>
+          <input id="B3" type="number" min="0" max="1" step="0.01" value="0.95">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">B₄</span>
+            Motivated reasoning
+          </span>
+          <input id="B4" type="number" min="0" max="1" step="0.01" value="0.80">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">C₁</span>
+            Formal credentials
+          </span>
+          <input id="C1" type="number" min="0" max="1" step="0.01" value="0.05">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">C₂</span>
+            Peer recognition
+          </span>
+          <input id="C2" type="number" min="0" max="1" step="0.01" value="0.10">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">C₃</span>
+            Relevant experience
+          </span>
+          <input id="C3" type="number" min="0" max="1" step="0.01" value="0.05">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">C₄</span>
+            Contribution track record
+          </span>
+          <input id="C4" type="number" min="0" max="1" step="0.01" value="0.05">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">D</span>
+            Rank relative to receiver
+          </span>
+          <input id="D" type="number" min="0" max="1" step="0.01" value="0.50">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">E</span>
+            Stated confidence
+          </span>
+          <input id="E" type="number" min="0" max="1" step="0.01" value="0.70">
+        </label>
+
+      </div>
+    </div>
+  </details>
+
+
+  <!-- CLUSTER 2 -->
+
+  <details open>
+    <summary>Cluster 2 — Statement Properties</summary>
+
+    <div class="cluster-content">
+
+      <div class="variable-grid">
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">F</span>
+            Novelty relative to field
+          </span>
+          <input id="F" type="number" min="0" max="1" step="0.01" value="0.45">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">G</span>
+            Internal consistency
+          </span>
+          <input id="G" type="number" min="0" max="1" step="0.01" value="0.96">
+        </label>
+
+        <label class="variable suggested">
+          <span class="variable-label">
+            <span class="symbol">H</span>
+            Falsifiability
+            <span class="suggested-tag">Suggested to try</span>
+          </span>
+          <input id="H" type="number" min="0" max="1" step="0.01" value="0.98">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">J</span>
+            Specificity
+          </span>
+          <input id="J" type="number" min="0" max="1" step="0.01" value="0.88">
+        </label>
+
+      </div>
+    </div>
+  </details>
+
+
+  <!-- CLUSTER 3 -->
+
+  <details>
+    <summary>Cluster 3 — Delivery Context</summary>
+
+    <div class="cluster-content">
+      <div class="variable-grid">
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">S</span> Language register</span>
+          <input id="S" type="number" min="0" max="1" step="0.01" value="0.95">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">T</span> Tone</span>
+          <input id="T" type="number" min="0" max="1" step="0.01" value="0.85">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">U</span> Posture / expression</span>
+          <input id="U" type="number" min="0" max="1" step="0.01" value="0.50">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">V</span> Time context</span>
+          <input id="V" type="number" min="0" max="1" step="0.01" value="0.90">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">W</span> Location / setting</span>
+          <input id="W" type="number" min="0" max="1" step="0.01" value="0.55">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">X</span> Public/private setting</span>
+          <input id="X" type="number" min="0" max="1" step="0.01" value="0.65">
+        </label>
+
+      </div>
+    </div>
+  </details>
+
+
+  <!-- CLUSTER 4 -->
+
+  <details open>
+    <summary>Cluster 4 — Situational Context</summary>
+
+    <div class="cluster-content">
+
+      <div class="variable-grid">
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">Y</span> General situation</span>
+          <input id="Y" type="number" min="0" max="1" step="0.01" value="0.80">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">Z</span> Speaker stakes</span>
+          <input id="Z" type="number" min="0" max="1" step="0.01" value="0.35">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">AA</span> Audience composition</span>
+          <input id="AA" type="number" min="0" max="1" step="0.01" value="0.65">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">AB</span>
+            Opposing voices
+          </span>
+          <input id="AB" type="number" min="0" max="1" step="0.01" value="0.90">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">AD</span> Broad stakes</span>
+          <input id="AD" type="number" min="0" max="1" step="0.01" value="0.75">
+        </label>
+
+        <label class="variable suggested">
+          <span class="variable-label">
+            <span class="symbol">Rel(s,c)</span>
+            Statement-to-context relevance
+            <span class="suggested-tag">Suggested to try</span>
+          </span>
+          <input id="Rel" type="number" min="0" max="1" step="0.01" value="0.98">
+        </label>
+
+      </div>
+
+      <p class="cluster-note" style="margin-top: 16px;">
+        For AB, a high value represents little opposition and a low value
+        represents strong opposing voices.
+      </p>
+
+    </div>
+  </details>
+
+
+  <!-- CLUSTER 5 -->
+
+  <details>
+    <summary>Cluster 5 — Receiver Properties</summary>
+
+    <div class="cluster-content">
+
+      <div class="variable-grid">
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">N</span>
+            Receiver novelty
+          </span>
+          <input id="N_raw" type="number" min="0" step="0.05" value="1.10">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">P</span> Prior knowledge</span>
+          <input id="P" type="number" min="0" max="1" step="0.01" value="0.65">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">Qrel</span> Relationship to speaker</span>
+          <input id="Q_rel" type="number" min="0" max="1" step="0.01" value="0.65">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">R</span> Cognitive/emotional state</span>
+          <input id="R" type="number" min="0" max="1" step="0.01" value="0.65">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label"><span class="symbol">AC</span> Personal consequence</span>
+          <input id="AC" type="number" min="0" max="1" step="0.01" value="0.95">
+        </label>
+
+      </div>
+
+      <p class="cluster-note" style="margin-top:16px;">
+        N is a non-negative novelty quantity and is not restricted to 0–1.
+      </p>
+
+    </div>
+  </details>
+
+
+  <!-- CLUSTER 6 -->
+
+  <details>
+    <summary>Cluster 6 — Corroboration and Evidence</summary>
+
+    <div class="cluster-content">
+
+      <div class="variable-grid">
+
+        <label class="variable">
+          <span class="variable-label">
+            Independent corroborating sources
+          </span>
+          <input id="K_count" type="number" min="0" step="1" value="0">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">Kmean</span>
+            Mean corroboration strength
+          </span>
+          <input id="K_mean" type="number" min="0" max="1" step="0.01" value="0.00">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">L</span>
+            Established-knowledge consistency
+          </span>
+          <input id="L" type="number" min="0" max="1" step="0.01" value="0.62">
+        </label>
+
+        <label class="variable">
+          <span class="variable-label">
+            <span class="symbol">M</span>
+            Physical / empirical evidence
+          </span>
+          <input id="M" type="number" min="0" max="1" step="0.01" value="0.42">
+        </label>
+
+      </div>
+
+      <p class="cluster-note" style="margin-top:16px;">
+        When the number of independent corroborating sources is 0, the
+        corroboration update is skipped. Kmean is therefore unused in the
+        default example.
+      </p>
+
+    </div>
+  </details>
+
+
+  <!-- DERIVED VALUES -->
+
+  <div class="derived">
+
+    <h2>Derived values</h2>
+
+    <p class="cluster-note">
+      These are computed from the atomic inputs. They are shown here so you can
+      see what changes inside the model when you alter a value.
+    </p>
+
+    <div class="derived-grid">
+
+      <div class="derived-row">
+        <span>B<sub>eff</sub></span>
+        <span id="dBeff">0.9275</span>
+      </div>
+
+      <div class="derived-row">
+        <span>C<sub>eff</sub></span>
+        <span id="dCeff">0.0625</span>
+      </div>
+
+      <div class="derived-row">
+        <span>Cred(s)</span>
+        <span id="dCred">0.1249</span>
+      </div>
+
+      <div class="derived-row">
+        <span>Stmt(s)</span>
+        <span id="dStmt">0.8878</span>
+      </div>
+
+      <div class="derived-row">
+        <span>Deliv raw</span>
+        <span id="dDelivery">0.2668</span>
+      </div>
+
+      <div class="derived-row">
+        <span>Deliv normalized</span>
+        <span id="dDeliveryNorm">0.5165</span>
+      </div>
+
+      <div class="derived-row">
+        <span>Sit* raw</span>
+        <span id="dSit">0.4554</span>
+      </div>
+
+      <div class="derived-row">
+        <span>Sit* normalized</span>
+        <span id="dSitNorm">0.6748</span>
+      </div>
+
+      <div class="derived-row">
+        <span>Recv perceived raw</span>
+        <span id="dRecv">0.4534</span>
+      </div>
+
+      <div class="derived-row">
+        <span>Recv perceived normalized</span>
+        <span id="dRecvNorm">0.7683</span>
+      </div>
+
+      <div class="derived-row">
+        <span>N<sub>perc</sub></span>
+        <span id="dNperc">0.6047</span>
+      </div>
+
+      <div class="derived-row">
+        <span>N<sub>imp</sub></span>
+        <span id="dNimp">0.9007</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="continue-area">
+
+    <p>
+      When you are finished experimenting, the next page shows several changes
+      I tested myself and what they revealed about the framework.
+    </p>
+
+    <a class="continue-link" href="findings.html">
+      Continue to observations →
+    </a>
+
+  </div>
+
+  <div class="back">
+    <a href="calculation.html">← Back to the worked calculation</a>
+  </div>
+
+</main>
+
+
+<script>
+  const EPS = 1e-12;
+
+  const defaults = {
+    B1: 0.98,
+    B2: 0.98,
+    B3: 0.95,
+    B4: 0.80,
+
+    C1: 0.05,
+    C2: 0.10,
+    C3: 0.05,
+    C4: 0.05,
+
+    D: 0.50,
+    E: 0.70,
+
+    F: 0.45,
+    G: 0.96,
+    H: 0.98,
+    J: 0.88,
+
+    S: 0.95,
+    T: 0.85,
+    U: 0.50,
+    V: 0.90,
+    W: 0.55,
+    X: 0.65,
+
+    Y: 0.80,
+    Z: 0.35,
+    AA: 0.65,
+    AB: 0.90,
+    AD: 0.75,
+    Rel: 0.98,
+
+    N_raw: 1.10,
+    P: 0.65,
+    Q_rel: 0.65,
+    R: 0.65,
+    AC: 0.95,
+
+    K_count: 0,
+    K_mean: 0.00,
+    L: 0.62,
+    M: 0.42
+  };
+
+
+  function value(id) {
+    return Number(document.getElementById(id).value);
+  }
+
+
+  function clamp01(x) {
+    return Math.max(0, Math.min(1, Number(x)));
+  }
+
+
+  function odds(p) {
+    p = Math.max(EPS, Math.min(1 - EPS, p));
+    return p / (1 - p);
+  }
+
+
+  function prob(o) {
+    return o / (1 + o);
+  }
+
+
+  function lr(x, x0) {
+    x = clamp01(x);
+
+    return Math.exp(
+      (x - x0) /
+      (x0 * (1 - x0))
+    );
+  }
+
+
+  function tilde(x, alpha) {
+    x = clamp01(x);
+
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+
+    return 1 - Math.exp(
+      1 - Math.pow(1 - x, -alpha)
+    );
+  }
+
+
+  function noveltyTransforms(Nraw) {
+    const N = Math.max(0, Number(Nraw));
+
+    /* Mirrors the V3.2 implementation's numerical safety cap. */
+    const safeN = Math.min(N, 20);
+
+    const Nnorm =
+      1 - Math.exp(-safeN);
+
+    let Nperc =
+      4.18 *
+      Math.pow(Nnorm, 0.7) *
+      Math.pow(1 - Nnorm, 1.5);
+
+    Nperc = clamp01(Nperc);
+
+    let Nimp =
+      1 -
+      Math.exp(
+        -safeN * (1 + safeN)
+      );
+
+    Nimp = clamp01(Nimp);
+
+    return {
+      Nnorm,
+      Nperc,
+      Nimp
+    };
+  }
+
+
+  function readInputs() {
+
+    const B_eff =
+      (
+        value("B1") +
+        value("B2") +
+        value("B3") +
+        value("B4")
+      ) / 4;
+
+    const C_eff =
+      (
+        value("C1") +
+        value("C2") +
+        value("C3") +
+        value("C4")
+      ) / 4;
+
+    return {
+      B_eff: clamp01(B_eff),
+      C_eff: clamp01(C_eff),
+
+      D: clamp01(value("D")),
+      E: clamp01(value("E")),
+
+      F: clamp01(value("F")),
+      G: clamp01(value("G")),
+      H: clamp01(value("H")),
+      J: clamp01(value("J")),
+
+      S: clamp01(value("S")),
+      T: clamp01(value("T")),
+      U: clamp01(value("U")),
+      V: clamp01(value("V")),
+      W: clamp01(value("W")),
+      X: clamp01(value("X")),
+
+      Y: clamp01(value("Y")),
+      Z: clamp01(value("Z")),
+      AA: clamp01(value("AA")),
+      AB: clamp01(value("AB")),
+      AD: clamp01(value("AD")),
+      Rel: clamp01(value("Rel")),
+
+      N_raw: Math.max(0, value("N_raw")),
+      P: clamp01(value("P")),
+      Q_rel: clamp01(value("Q_rel")),
+      R: clamp01(value("R")),
+      AC: clamp01(value("AC")),
+
+      K_count:
+        Math.max(
+          0,
+          Math.round(value("K_count"))
+        ),
+
+      K_mean:
+        clamp01(value("K_mean")),
+
+      L: clamp01(value("L")),
+      M: clamp01(value("M"))
+    };
+  }
+
+
+  function credibility(row) {
+
+    const B = row.B_eff;
+    const C = row.C_eff;
+    const D = row.D;
+    const E = row.E;
+
+    if (B <= 0 || C <= 0) {
+      return 0;
+    }
+
+    return (
+      Math.pow(
+        B,
+        Math.pow(B, -0.5)
+      ) *
+      Math.sqrt(C) *
+      ((4 * D + E) / 5)
+    );
+  }
+
+
+  function statementComposite(row) {
+
+    const k = Math.log(100);
+
+    const Fbal =
+      4 *
+      row.F *
+      (1 - row.F);
+
+    return (
+      ((Fbal + row.J) / 2) *
+      row.G *
+      (
+        1 -
+        Math.exp(
+          -k * row.H
+        )
+      )
+    );
+  }
+
+
+  function delivery(row) {
+
+    return (
+      row.W *
+
+      Math.pow(
+        row.V *
+        Math.pow(row.X, 1.1),
+        1.1
+      ) *
+
+      Math.pow(
+        (
+          3 * row.S +
+          2 * row.T +
+          row.U
+        ) / 6,
+        0.5
+      )
+    );
+  }
+
+
+  function zEff(row) {
+    return (
+      row.Z *
+      (
+        1 -
+        row.Z *
+        (1 - row.B_eff)
+      )
+    );
+  }
+
+
+  function situationalStar(row) {
+
+    const x0AD = 0.40;
+    const x0Y  = 0.51;
+    const x0Z  = 0.60;
+
+    const Ze =
+      zEff(row);
+
+    const ADstar =
+      row.Rel * row.AD +
+      (1 - row.Rel) * x0AD;
+
+    const Ystar =
+      row.Rel * row.Y +
+      (1 - row.Rel) * x0Y;
+
+    const Zstar =
+      row.Rel * Ze +
+      (1 - row.Rel) * x0Z;
+
+    return (
+      Math.pow(row.AB, 2.1) *
+      Math.pow(row.AA, 0.2) *
+      (
+        (
+          2 * Zstar +
+          3 * ADstar +
+          Ystar
+        ) / 6
+      )
+    );
+  }
+
+
+  function receiver(row, importance = false) {
+
+    const n =
+      noveltyTransforms(row.N_raw);
+
+    const N =
+      importance
+        ? n.Nimp
+        : n.Nperc;
+
+    return (
+      Math.pow(
+        N,
+        1 - row.P
+      ) *
+
+      row.Q_rel *
+
+      4 *
+      row.R *
+      (1 - row.R) *
+
+      Math.pow(
+        row.AC,
+        1.75
+      )
+    );
+  }
+
+
+  function applyKUpdates(o, row) {
+
+    if (row.K_count <= 0) {
+      return o;
+    }
+
+    const baseLR =
+      lr(row.K_mean, 0.50);
+
+    for (
+      let n = 1;
+      n <= row.K_count;
+      n++
+    ) {
+      o *=
+        1 +
+        (baseLR - 1) /
+        Math.pow(n, 1.0);
+    }
+
+    return o;
+  }
+
+
+  function computeTabs(row) {
+
+    let o =
+      odds(0.50);
+
+    const cred =
+      credibility(row);
+
+    const stmt =
+      statementComposite(row);
+
+    o *=
+      lr(
+        cred,
+        0.301
+      );
+
+    o *=
+      lr(
+        stmt,
+        0.626
+      );
+
+    o =
+      applyKUpdates(
+        o,
+        row
+      );
+
+    o *=
+      lr(
+        row.L,
+        0.75
+      );
+
+    o *=
+      lr(
+        row.M,
+        0.50
+      );
+
+    return prob(o);
+  }
+
+
+  function computeTperc(row, Tabs) {
+
+    const d =
+      delivery(row);
+
+    const s =
+      situationalStar(row);
+
+    const r =
+      receiver(
+        row,
+        false
+      );
+
+    let o =
+      odds(Tabs);
+
+    o *=
+      lr(
+        Math.sqrt(
+          Math.max(0, d)
+        ),
+        0.379
+      );
+
+    o *=
+      lr(
+        Math.sqrt(
+          Math.max(0, s)
+        ),
+        0.436
+      );
+
+    o *=
+      lr(
+        Math.pow(
+          r,
+          1 / 3
+        ),
+        0.450
+      );
+
+    return prob(o);
+  }
+
+
+  function computeImportance(row, Tabs) {
+
+    const d =
+      delivery(row);
+
+    const s =
+      situationalStar(row);
+
+    const r =
+      receiver(
+        row,
+        true
+      );
+
+    const dNorm =
+      Math.sqrt(
+        Math.max(0, d)
+      );
+
+    const sNorm =
+      Math.sqrt(
+        Math.max(0, s)
+      );
+
+    const rNorm =
+      Math.pow(
+        Math.max(0, r),
+        1 / 3
+      );
+
+    const td =
+      tilde(
+        dNorm,
+        0.8
+      );
+
+    const ts =
+      tilde(
+        sNorm,
+        0.75
+      );
+
+    const tr =
+      tilde(
+        rNorm,
+        0.7
+      );
+
+    let o =
+      odds(0.50);
+
+    o *=
+      lr(
+        td,
+        0.372
+      );
+
+    o *=
+      lr(
+        ts,
+        0.415
+      );
+
+    o *=
+      lr(
+        tr,
+        0.405
+      );
+
+    const beta =
+      0.15;
+
+    const x0 =
+      0.50;
+
+    const lambdaTruth =
+      Math.exp(
+        beta *
+        (
+          (
+            Math.sqrt(
+              clamp01(Tabs)
+            ) -
+            x0
+          ) /
+          (
+            x0 *
+            (1 - x0)
+          )
+        )
+      );
+
+    o *=
+      lambdaTruth;
+
+    return prob(o);
+  }
+
+
+  function format(x) {
+    return Number(x).toFixed(4);
+  }
+
+
+  function runFramework() {
+
+    const row =
+      readInputs();
+
+    const cred =
+      credibility(row);
+
+    const stmt =
+      statementComposite(row);
+
+    const d =
+      delivery(row);
+
+    const s =
+      situationalStar(row);
+
+    const rPerc =
+      receiver(
+        row,
+        false
+      );
+
+    const novelty =
+      noveltyTransforms(
+        row.N_raw
+      );
+
+    const Tabs =
+      computeTabs(row);
+
+    const Tperc =
+      computeTperc(
+        row,
+        Tabs
+      );
+
+    const I =
+      computeImportance(
+        row,
+        Tabs
+      );
+
+
+    /* Final outputs */
+
+    document.getElementById("outTabs").textContent =
+      format(Tabs);
+
+    document.getElementById("outTperc").textContent =
+      format(Tperc);
+
+    document.getElementById("outI").textContent =
+      format(I);
+
+
+    /* Derived values */
+
+    document.getElementById("dBeff").textContent =
+      format(row.B_eff);
+
+    document.getElementById("dCeff").textContent =
+      format(row.C_eff);
+
+    document.getElementById("dCred").textContent =
+      format(cred);
+
+    document.getElementById("dStmt").textContent =
+      format(stmt);
+
+    document.getElementById("dDelivery").textContent =
+      format(d);
+
+    document.getElementById("dDeliveryNorm").textContent =
+      format(
+        Math.sqrt(
+          Math.max(0, d)
+        )
+      );
+
+    document.getElementById("dSit").textContent =
+      format(s);
+
+    document.getElementById("dSitNorm").textContent =
+      format(
+        Math.sqrt(
+          Math.max(0, s)
+        )
+      );
+
+    document.getElementById("dRecv").textContent =
+      format(rPerc);
+
+    document.getElementById("dRecvNorm").textContent =
+      format(
+        Math.pow(
+          Math.max(0, rPerc),
+          1 / 3
+        )
+      );
+
+    document.getElementById("dNperc").textContent =
+      format(
+        novelty.Nperc
+      );
+
+    document.getElementById("dNimp").textContent =
+      format(
+        novelty.Nimp
+      );
+
+
+    document.getElementById("status").textContent =
+      "Framework rerun with the current values.";
+  }
+
+
+  function resetFramework() {
+
+    for (
+      const [id, val]
+      of Object.entries(defaults)
+    ) {
+      document.getElementById(id).value =
+        val;
+    }
+
+    runFramework();
+
+    document.getElementById("status").textContent =
+      "Worked-example values restored.";
+  }
+
+
+  document
+    .getElementById("runButton")
+    .addEventListener(
+      "click",
+      runFramework
+    );
+
+
+  document
+    .getElementById("resetButton")
+    .addEventListener(
+      "click",
+      resetFramework
+    );
+
+
+  /*
+    Mark the display as changed whenever the reader edits
+    an atomic input, but wait for "Run framework" before
+    recalculating. This makes the interaction deliberate.
+  */
+
+  document
+    .querySelectorAll("input")
+    .forEach(input => {
+
+      input.addEventListener(
+        "input",
+        () => {
+          document.getElementById("status").textContent =
+            "Values changed. Click “Run framework” to recompute.";
+        }
+      );
+
+    });
+
+
+  /* Initial computation */
+
+  runFramework();
+</script>
+
+</body>
+</html>
