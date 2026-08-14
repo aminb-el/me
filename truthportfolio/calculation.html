@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Calculation — Truth / Importance Portfolio</title>
+
+  <!-- MathJax for readable equations -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    async>
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ffffff;
+      color: #171717;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 70px 24px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    h2 {
+      margin: 58px 0 16px;
+      font-size: 23px;
+      font-weight: 600;
+    }
+
+    h3 {
+      margin: 35px 0 12px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.75;
+      margin: 0 0 22px;
+    }
+
+    .intro {
+      color: #555555;
+      font-size: 16px;
+      line-height: 1.65;
+      margin-bottom: 38px;
+    }
+
+    .statement-box {
+      border-top: 1px solid #d7d7d7;
+      border-bottom: 1px solid #d7d7d7;
+      padding: 24px 0;
+      margin: 36px 0 46px;
+    }
+
+    .statement-label {
+      font-size: 13px;
+      color: #666666;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 9px;
+    }
+
+    .statement {
+      font-size: 20px;
+      line-height: 1.55;
+    }
+
+    .precision-note {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #666666;
+      margin-top: 12px;
+    }
+
+    .section {
+      margin-top: 48px;
+    }
+
+    .step {
+      padding: 24px 0;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .step:last-child {
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .step-description {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #555555;
+      margin-bottom: 18px;
+    }
+
+    .formula {
+      overflow-x: auto;
+      padding: 18px 20px;
+      margin: 16px 0;
+      background: #fafafa;
+      border-left: 2px solid #222222;
+      font-size: 16px;
+    }
+
+    .result-line {
+      font-size: 16px;
+      line-height: 1.65;
+      margin-top: 12px;
+    }
+
+    .result-line strong {
+      font-weight: 600;
+    }
+
+    .update-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .update-table th {
+      text-align: left;
+      font-size: 13px;
+      color: #666666;
+      font-weight: 600;
+      padding: 10px 8px;
+      border-bottom: 1px solid #cccccc;
+    }
+
+    .update-table td {
+      padding: 12px 8px;
+      border-bottom: 1px solid #e8e8e8;
+      font-size: 15px;
+      line-height: 1.5;
+      vertical-align: top;
+    }
+
+    .number {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .skip-update {
+      color: #666666;
+      font-style: italic;
+    }
+
+    .outputs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .output {
+      border: 1px solid #d9d9d9;
+      padding: 22px;
+      min-height: 160px;
+    }
+
+    .output-symbol {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 17px;
+      margin-bottom: 16px;
+    }
+
+    .output-value {
+      font-size: 31px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      margin-bottom: 15px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .output-text {
+      color: #555555;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .interpretation {
+      margin-top: 38px;
+      padding-left: 20px;
+      border-left: 2px solid #222222;
+    }
+
+    .interpretation p {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    .limitations {
+      margin-top: 32px;
+      padding: 24px 0;
+      border-top: 1px solid #d9d9d9;
+      border-bottom: 1px solid #d9d9d9;
+    }
+
+    .limitations p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #444444;
+      margin-bottom: 14px;
+    }
+
+    .limitations p:last-child {
+      margin-bottom: 0;
+    }
+
+    .continue {
+      margin-top: 48px;
+    }
+
+    .continue a {
+      display: inline-block;
+      color: #171717;
+      text-decoration: none;
+      border: 1px solid #171717;
+      padding: 12px 22px;
+      font-size: 15px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .continue a:hover,
+    .continue a:focus {
+      background: #171717;
+      color: #ffffff;
+    }
+
+    .back {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .back a {
+      color: #666666;
+      text-decoration: none;
+    }
+
+    .back a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 700px) {
+      .outputs {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .update-table {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<main>
+
+  <h1>From Inputs to Outputs</h1>
+
+  <p class="intro">
+    The previous page fixed the atomic inputs. Here, those values are passed
+    through the same mathematical structure used by the project's formula
+    engine.
+  </p>
+
+  <div class="statement-box">
+    <div class="statement-label">Statement</div>
+
+    <div class="statement">
+      “The school will be closed tomorrow because a water outage will affect
+      the campus.”
+    </div>
+
+    <div class="precision-note">
+      Values displayed on this page are rounded for readability. The engine
+      retains full numerical precision during computation.
+    </div>
+  </div>
+
+
+  <!-- SOURCE CREDIBILITY -->
+
+  <section class="section">
+
+    <h2>1. Source credibility</h2>
+
+    <p>
+      The four bias variables and four expertise variables are first collapsed
+      into effective bias and expertise values.
+    </p>
+
+    <div class="formula">
+      \[
+      B_{\mathrm{eff}}
+      =
+      \frac{0.98+0.98+0.95+0.80}{4}
+      =
+      0.9275
+      \]
+    </div>
+
+    <div class="formula">
+      \[
+      C_{\mathrm{eff}}
+      =
+      \frac{0.05+0.10+0.05+0.05}{4}
+      =
+      0.0625
+      \]
+    </div>
+
+    <p>
+      These values enter the source-credibility function:
+    </p>
+
+    <div class="formula">
+      \[
+      Cred(s)
+      =
+      B_{\mathrm{eff}}^{B_{\mathrm{eff}}^{-0.5}}
+      \sqrt{C_{\mathrm{eff}}}
+      \left(\frac{4D+E}{5}\right)
+      \]
+    </div>
+
+    <div class="formula">
+      \[
+      Cred(s)
+      =
+      0.9275^{\,0.9275^{-0.5}}
+      \sqrt{0.0625}
+      \left(
+      \frac{4(0.50)+0.70}{5}
+      \right)
+      \]
+    </div>
+
+    <div class="result-line">
+      <strong>Source-credibility composite:</strong> 0.1249
+    </div>
+
+    <p class="step-description">
+      The classmate appears relatively free of obvious bias, but their very
+      low expertise and lack of institutional authority make the overall
+      credibility term weak.
+    </p>
+
+  </section>
+
+
+  <!-- STATEMENT -->
+
+  <section class="section">
+
+    <h2>2. Statement properties</h2>
+
+    <p>
+      Novelty is first balanced so that neither complete triviality nor
+      extreme novelty receives the strongest contribution.
+    </p>
+
+    <div class="formula">
+      \[
+      F_{\mathrm{bal}}
+      =
+      4F(1-F)
+      =
+      4(0.45)(0.55)
+      =
+      0.990
+      \]
+    </div>
+
+    <p>
+      The balanced novelty value is then combined with specificity,
+      consistency, and falsifiability:
+    </p>
+
+    <div class="formula">
+      \[
+      Stmt(s)
+      =
+      \left(
+      \frac{F_{\mathrm{bal}}+J}{2}
+      \right)
+      G
+      \left(
+      1-e^{-\ln(100)H}
+      \right)
+      \]
+    </div>
+
+    <div class="formula">
+      \[
+      Stmt(s)
+      =
+      \left(
+      \frac{0.990+0.88}{2}
+      \right)
+      (0.96)
+      \left(
+      1-e^{-\ln(100)(0.98)}
+      \right)
+      \]
+    </div>
+
+    <div class="result-line">
+      <strong>Statement composite:</strong> 0.8878
+    </div>
+
+    <p class="step-description">
+      This is deliberately much stronger than the source score. The claim is
+      specific, internally coherent, and easy for reality to confirm or
+      disconfirm even though the person reporting it is not authoritative.
+    </p>
+
+  </section>
+
+
+  <!-- DELIVERY -->
+
+  <section class="section">
+
+    <h2>3. Delivery</h2>
+
+    <div class="formula">
+      \[
+      Deliv
+      =
+      W
+      \left(
+      VX^{1.1}
+      \right)^{1.1}
+      \left(
+      \frac{3S+2T+U}{6}
+      \right)^{0.5}
+      \]
+    </div>
+
+    <div class="formula">
+      \[
+      Deliv
+      =
+      0.55
+      \left(
+      0.90(0.65^{1.1})
+      \right)^{1.1}
+      \left(
+      \frac{3(0.95)+2(0.85)+0.50}{6}
+      \right)^{0.5}
+      \]
+    </div>
+
+    <div class="result-line">
+      <strong>Raw delivery composite:</strong> 0.2668
+    </div>
+
+    <p>
+      The implementation uses the normalized form:
+    </p>
+
+    <div class="formula">
+      \[
+      Deliv_{\mathrm{final}}
+      =
+      \sqrt{0.2668}
+      =
+      0.5165
+      \]
+    </div>
+
+  </section>
+
+
+  <!-- SITUATION -->
+
+  <section class="section">
+
+    <h2>4. Situational context and relevance</h2>
+
+    <p>
+      Speaker stakes are first adjusted using effective bias:
+    </p>
+
+    <div class="formula">
+      \[
+      Z_{\mathrm{eff}}
+      =
+      Z
+      \left[
+      1-Z(1-B_{\mathrm{eff}})
+      \right]
+      \]
+    </div>
+
+    <div class="formula">
+      \[
+      Z_{\mathrm{eff}}
+      =
+      0.35
+      \left[
+      1-0.35(1-0.9275)
+      \right]
+      =
+      0.3411
+      \]
+    </div>
+
+    <p>
+      The relevance gate then determines how much of the surrounding stakes
+      genuinely belongs to this statement.
+    </p>
+
+    <div class="formula">
+      \[
+      AD^*
+      =
+      0.98(0.75)+0.02(0.40)
+      =
+      0.7430
+      \]
+    </div>
+
+    <div class="formula">
+      \[
+      Y^*
+      =
+      0.98(0.80)+0.02(0.51)
+      =
+      0.7942
+      \]
+    </div>
+
+    <div class="formula">
+      \[
+      Z_{\mathrm{eff}}^*
+      =
+      0.98(0.3411)+0.02(0.60)
+      =
+      0.3463
+      \]
+    </div>
+
+    <p>
+      These gated quantities enter the situational composite:
+    </p>
+
+    <div class="formula">
+      \[
+      Sit^*
+      =
+      AB^{2.1}
+      AA^{0.2}
+      \left(
+      \frac{
+      2Z_{\mathrm{eff}}^*
+      +3AD^*
+      +Y^*
+      }{6}
+      \right)
+      \]
+    </div>
+
+    <div class="result-line">
+      <strong>Raw situational composite:</strong> 0.4554
+    </div>
+
+    <div class="formula">
+      \[
+      Sit^*_{\mathrm{final}}
+      =
+      \sqrt{0.4554}
+      =
+      0.6748
+      \]
+    </div>
+
+  </section>
+
+
+  <!-- RECEIVER -->
+
+  <section class="section">
+
+    <h2>5. Receiver</h2>
+
+    <p>
+      Receiver novelty begins from \(N=1.10\) and is transformed differently
+      for perceived truth and importance.
+    </p>
+
+    <div class="formula">
+      \[
+      N_{\mathrm{norm}}
+      =
+      1-e^{-1.10}
+      =
+      0.6671
+      \]
+    </div>
+
+    <div class="formula">
+      \[
+      N_{\mathrm{perc}}
+      =
+      4.18
+      N_{\mathrm{norm}}^{0.7}
+      (1-N_{\mathrm{norm}})^{1.5}
+      =
+      0.6047
+      \]
+    </div>
+
+    <div class="formula">
+      \[
+      N_{\mathrm{imp}}
+      =
+      1-e^{-N(1+N)}
+      =
+      0.9007
+      \]
+    </div>
+
+    <h3>Receiver term for perceived truth</h3>
+
+    <div class="formula">
+      \[
+      Recv_{\mathrm{perc}}
+      =
+      \left[
+      N_{\mathrm{perc}}^{1-P}
+      Q_{\mathrm{rel}}
+      4R(1-R)
+      \right]
+      AC^{1.75}
+      \]
+    </div>
+
+    <div class="result-line">
+      <strong>Raw receiver composite:</strong> 0.4534
+    </div>
+
+    <div class="formula">
+      \[
+      Recv_{\mathrm{perc,final}}
+      =
+      \sqrt[3]{0.4534}
+      =
+      0.7683
+      \]
+    </div>
+
+    <h3>Receiver term for importance</h3>
+
+    <p>
+      The same receiver structure is used, but
+      \(N_{\mathrm{imp}}\) replaces \(N_{\mathrm{perc}}\).
+    </p>
+
+    <div class="result-line">
+      <strong>Raw importance receiver composite:</strong> 0.5213
+    </div>
+
+    <div class="formula">
+      \[
+      Recv_{\mathrm{imp,final}}
+      =
+      \sqrt[3]{0.5213}
+      =
+      0.8048
+      \]
+    </div>
+
+  </section>
+
+
+  <!-- T ABS -->
+
+  <section class="section">
+
+    <h2>6. Evidence-weighted truth</h2>
+
+    <p>
+      The formula engine converts each composite into a likelihood ratio:
+    </p>
+
+    <div class="formula">
+      \[
+      \Lambda_c(x)
+      =
+      \exp
+      \left(
+      \frac{x-x_{0,c}}
+      {x_{0,c}(1-x_{0,c})}
+      \right)
+      \]
+    </div>
+
+    <p>
+      The cold-start prior is 0.50. The updates then occur sequentially.
+      Because there are no independent corroborating sources, the
+      corroboration step is skipped rather than treated as negative evidence.
+    </p>
+
+    <table class="update-table">
+      <thead>
+        <tr>
+          <th>Step</th>
+          <th>Input</th>
+          <th>Likelihood ratio</th>
+          <th>Updated value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Cold-start prior</td>
+          <td class="number">0.5000</td>
+          <td>—</td>
+          <td class="number">0.5000</td>
+        </tr>
+
+        <tr>
+          <td>Source credibility</td>
+          <td class="number">0.1249</td>
+          <td class="number">0.4329</td>
+          <td class="number">0.3021</td>
+        </tr>
+
+        <tr>
+          <td>Statement properties</td>
+          <td class="number">0.8878</td>
+          <td class="number">3.0588</td>
+          <td class="number">0.5697</td>
+        </tr>
+
+        <tr>
+          <td>Independent corroboration</td>
+          <td>0 independent sources</td>
+          <td class="skip-update">Skipped</td>
+          <td class="number">0.5697</td>
+        </tr>
+
+        <tr>
+          <td>Established knowledge</td>
+          <td class="number">0.6200</td>
+          <td class="number">0.4999</td>
+          <td class="number">0.3983</td>
+        </tr>
+
+        <tr>
+          <td>Physical / empirical evidence</td>
+          <td class="number">0.4200</td>
+          <td class="number">0.7261</td>
+          <td class="number">0.3246</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="formula">
+      \[
+      \boxed{
+      T_{\mathrm{abs}}(s)=0.3246
+      }
+      \]
+    </div>
+
+  </section>
+
+
+  <!-- T PERC -->
+
+  <section class="section">
+
+    <h2>7. Perceived truth</h2>
+
+    <p>
+      Perceived truth begins from the evidence-weighted truth value rather than
+      from a new prior.
+    </p>
+
+    <table class="update-table">
+      <thead>
+        <tr>
+          <th>Step</th>
+          <th>Input</th>
+          <th>Likelihood ratio</th>
+          <th>Updated value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Evidence-weighted truth anchor</td>
+          <td class="number">0.3246</td>
+          <td>—</td>
+          <td class="number">0.3246</td>
+        </tr>
+
+        <tr>
+          <td>Delivery</td>
+          <td class="number">0.5165</td>
+          <td class="number">1.7940</td>
+          <td class="number">0.4630</td>
+        </tr>
+
+        <tr>
+          <td>Situational context</td>
+          <td class="number">0.6748</td>
+          <td class="number">2.6412</td>
+          <td class="number">0.6949</td>
+        </tr>
+
+        <tr>
+          <td>Receiver</td>
+          <td class="number">0.7683</td>
+          <td class="number">3.6178</td>
+          <td class="number">0.8918</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="formula">
+      \[
+      \boxed{
+      T_{\mathrm{perc}}(s,r)=0.8918
+      }
+      \]
+    </div>
+
+  </section>
+
+
+  <!-- IMPORTANCE -->
+
+  <section class="section">
+
+    <h2>8. Importance</h2>
+
+    <p>
+      Importance begins from its own flat prior of 0.50. The normalized
+      delivery, situation, and receiver composites are first passed through
+      the framework's importance transform.
+    </p>
+
+    <div class="formula">
+      \[
+      \widetilde{X}_{\alpha}
+      =
+      1-
+      \exp
+      \left(
+      1-(1-X)^{-\alpha}
+      \right)
+      \]
+    </div>
+
+    <table class="update-table">
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Normalized input</th>
+          <th>Transformed input</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Delivery</td>
+          <td class="number">0.5165</td>
+          <td class="number">0.5455</td>
+        </tr>
+
+        <tr>
+          <td>Situation</td>
+          <td class="number">0.6748</td>
+          <td class="number">0.7335</td>
+        </tr>
+
+        <tr>
+          <td>Receiver</td>
+          <td class="number">0.8048</td>
+          <td class="number">0.8821</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      After the contextual updates:
+    </p>
+
+    <div class="formula">
+      \[
+      I_{\mathrm{context}}=0.9826
+      \]
+    </div>
+
+    <p>
+      Evidence-weighted truth then enters only through a dampened update:
+    </p>
+
+    <div class="formula">
+      \[
+      \Lambda_T
+      =
+      \exp
+      \left[
+      0.15
+      \left(
+      \frac{\sqrt{T_{\mathrm{abs}}}-0.50}
+      {0.50(1-0.50)}
+      \right)
+      \right]
+      =
+      1.0428
+      \]
+    </div>
+
+    <div class="formula">
+      \[
+      \boxed{
+      I(s,r)=0.9833
+      }
+      \]
+    </div>
+
+  </section>
+
+
+  <!-- FINAL OUTPUTS -->
+
+  <section class="section">
+
+    <h2>The three outputs</h2>
+
+    <div class="outputs">
+
+      <div class="output">
+        <div class="output-symbol">
+          T<sub>abs</sub>(s)
+        </div>
+
+        <div class="output-value">
+          0.325
+        </div>
+
+        <div class="output-text">
+          Evidence-weighted truth value.
+        </div>
+      </div>
+
+      <div class="output">
+        <div class="output-symbol">
+          T<sub>perc</sub>(s,r)
+        </div>
+
+        <div class="output-value">
+          0.892
+        </div>
+
+        <div class="output-text">
+          Perceived-truth value for this receiver.
+        </div>
+      </div>
+
+      <div class="output">
+        <div class="output-symbol">
+          I(s,r)
+        </div>
+
+        <div class="output-value">
+          0.983
+        </div>
+
+        <div class="output-text">
+          Importance value for this receiver.
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- INTERPRETATION -->
+
+  <section class="section">
+
+    <h2>Why this result is reasonable</h2>
+
+    <div class="interpretation">
+
+      <p>
+        <strong>The truth value remains relatively low.</strong>
+        The statement itself is clear and highly falsifiable, but it comes
+        from a classmate with little relevant authority, has no independent
+        corroboration, and lacks direct evidence that the school has actually
+        decided to close.
+      </p>
+
+      <p>
+        <strong>The perceived-truth value is much higher.</strong>
+        The same statement arrives in a class group, immediately before the
+        school day, during a plausible water disruption, and to a receiver who
+        has an exam the next morning.
+      </p>
+
+      <p>
+        <strong>The importance value is higher still.</strong>
+        Whether the statement ultimately proves true or false, the receiver
+        may need to change travel, preparation, attendance, and exam plans
+        because of it.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- IMPROVEMENT -->
+
+  <section class="section">
+
+    <h2>Where the framework can still improve</h2>
+
+    <div class="limitations">
+
+      <p>
+        Several atomic inputs remain rubric-guided judgments. Values such as
+        statement-to-context relevance, relationship strength, and audience
+        composition need stronger operational definitions and further
+        calibration.
+      </p>
+
+      <p>
+        The framework's neutral points, weights, and transformation parameters
+        are current model choices rather than final empirically established
+        constants. Larger validation studies and independent human or model
+        raters would provide stronger calibration.
+      </p>
+
+      <p>
+        A real claim also changes as new evidence arrives. If the school later
+        publishes an official notice, the source and evidence inputs should be
+        updated rather than treating this first computation as permanent.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <div class="continue">
+    <a href="interactive.html">
+      Try the live version →
+    </a>
+  </div>
+
+  <div class="back">
+    <a href="worked-example.html">← Back to atomic inputs</a>
+  </div>
+
+</main>
+
+</body>
+</html>
