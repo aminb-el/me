@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Video Walkthrough — Truth / Importance Portfolio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ffffff;
+      color: #171717;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 70px 24px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.75;
+      margin: 0 0 22px;
+    }
+
+    .intro {
+      color: #555555;
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 38px;
+    }
+
+    .note {
+      border-top: 1px solid #d8d8d8;
+      border-bottom: 1px solid #d8d8d8;
+      padding: 20px 0;
+      margin-bottom: 36px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #555555;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000000;
+      margin: 28px 0 18px;
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-caption {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #666666;
+      margin-bottom: 34px;
+    }
+
+    .what-it-covers {
+      margin: 38px 0;
+      border-top: 1px solid #d8d8d8;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 24px;
+      padding: 17px 0;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .item-label {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .item-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #4a4a4a;
+    }
+
+    .full-video {
+      margin-top: 34px;
+      padding: 22px 0;
+      border-top: 1px solid #d8d8d8;
+      border-bottom: 1px solid #d8d8d8;
+    }
+
+    .full-video p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #555555;
+      margin-bottom: 14px;
+    }
+
+    .text-link {
+      color: #171717;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .continue {
+      margin-top: 50px;
+    }
+
+    .continue a {
+      display: inline-block;
+      color: #171717;
+      text-decoration: none;
+      border: 1px solid #171717;
+      padding: 12px 22px;
+      font-size: 15px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .continue a:hover,
+    .continue a:focus {
+      background: #171717;
+      color: #ffffff;
+    }
+
+    .back {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .back a {
+      color: #666666;
+      text-decoration: none;
+    }
+
+    .back a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 620px) {
+      body {
+        padding: 45px 18px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .item {
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<main>
+
+  <h1>A Short Video Walkthrough</h1>
+
+  <p class="intro">
+    If you would rather hear me explain the project directly, I recorded a
+    walkthrough while working through the framework. The original recording
+    is much longer, so the player below opens only the short summary at the end.
+  </p>
+
+  <div class="note">
+    This video is optional. Everything needed to understand the project is
+    already contained in the preceding pages; this is simply another way to
+    hear the architecture explained in my own words.
+  </div>
+
+
+  <!-- SUMMARY VIDEO -->
+
+  <div class="video-wrap">
+
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/Cqfl1InsTDQ?start=3788&end=4066&rel=0"
+      title="Truth / Perceived Truth / Importance Framework — Short Summary"
+      allow="
+        accelerometer;
+        autoplay;
+        clipboard-write;
+        encrypted-media;
+        gyroscope;
+        picture-in-picture;
+        web-share
+      "
+      allowfullscreen>
+    </iframe>
+
+  </div>
+
+  <div class="video-caption">
+    Summary segment: approximately 1:03:08–1:07:46 of the original recording.
+  </div>
+
+
+  <!-- CONTENT GUIDE -->
+
+  <div class="what-it-covers">
+
+    <div class="item">
+      <div class="item-label">
+        Architecture
+      </div>
+
+      <div class="item-text">
+        The nested input spaces behind evidence-weighted truth,
+        perceived truth, and importance.
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-label">
+        Model structure
+      </div>
+
+      <div class="item-text">
+        The fifteen axioms, six input clusters, prior, likelihood-ratio
+        updates, and Bayesian computation.
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-label">
+        Mathematical choices
+      </div>
+
+      <div class="item-text">
+        Neutral points, square-root and cube-root normalization,
+        limits, singularities, and open problems.
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-label">
+        Stress testing
+      </div>
+
+      <div class="item-text">
+        A brief reference to the Colin Powell WMD case and the different
+        behavior of the three outputs.
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- FULL ORIGINAL -->
+
+  <div class="full-video">
+
+    <p>
+      The short segment above comes from a much longer informal recording in
+      which I work through the paper in substantially more detail.
+    </p>
+
+    <p>
+      If you are unusually curious, the complete original recording is still
+      available:
+    </p>
+
+    <a
+      class="text-link"
+      href="https://www.youtube.com/watch?v=Cqfl1InsTDQ"
+      target="_blank"
+      rel="noopener"
+    >
+      Open the full walkthrough on YouTube →
+    </a>
+
+  </div>
+
+
+  <!-- NEXT -->
+
+  <div class="continue">
+    <a href="end.html">
+      Continue →
+    </a>
+  </div>
+
+  <div class="back">
+    <a href="process.html">
+      ← Back to development process
+    </a>
+  </div>
+
+</main>
+
+</body>
+</html>
