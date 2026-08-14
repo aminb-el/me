@@ -1,1 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Development Process — Truth / Importance Portfolio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ffffff;
+      color: #171717;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 70px 24px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.75;
+      margin: 0 0 22px;
+    }
+
+    .intro {
+      color: #555555;
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 46px;
+    }
+
+    .note {
+      border-top: 1px solid #d8d8d8;
+      border-bottom: 1px solid #d8d8d8;
+      padding: 20px 0;
+      margin-bottom: 50px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #555555;
+    }
+
+    .stage {
+      margin: 0 0 62px;
+      padding-top: 32px;
+      border-top: 1px solid #d8d8d8;
+    }
+
+    .stage-number {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #777777;
+      margin-bottom: 8px;
+    }
+
+    .stage p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #3f3f3f;
+    }
+
+    figure {
+      margin: 28px 0 0;
+    }
+
+    figure a {
+      display: block;
+      text-decoration: none;
+    }
+
+    figure img {
+      display: block;
+      max-width: 100%;
+      max-height: 720px;
+      width: auto;
+      height: auto;
+      margin: 0 auto;
+      border: 1px solid #e0e0e0;
+      background: #ffffff;
+    }
+
+    figure img.archive {
+      width: auto;
+      max-width: 100%;
+      max-height: none;
+      image-rendering: auto;
+    }
+
+    figcaption {
+      margin-top: 13px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #666666;
+    }
+
+    .open-note {
+      margin-top: 5px;
+      font-size: 12px;
+      color: #888888;
+    }
+
+    .turning-point {
+      margin: 54px 0;
+      padding: 26px 0 26px 20px;
+      border-left: 2px solid #222222;
+    }
+
+    .turning-point p {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .progression-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 15px;
+    }
+
+    .progression-table th {
+      text-align: left;
+      padding: 9px 6px;
+      border-bottom: 1px solid #cccccc;
+      font-size: 13px;
+      color: #666666;
+      font-weight: 600;
+    }
+
+    .progression-table td {
+      padding: 10px 6px;
+      border-bottom: 1px solid #eeeeee;
+      vertical-align: top;
+    }
+
+    .numeric {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .archive-list {
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #444444;
+    }
+
+    .archive-list li {
+      border-bottom: 1px solid #eeeeee;
+      padding: 7px 0;
+    }
+
+    code {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.95em;
+    }
+
+    .continue {
+      margin-top: 54px;
+      padding-top: 28px;
+      border-top: 1px solid #d8d8d8;
+    }
+
+    .continue p {
+      font-size: 15px;
+      color: #555555;
+    }
+
+    .continue a {
+      display: inline-block;
+      color: #171717;
+      text-decoration: none;
+      border: 1px solid #171717;
+      padding: 12px 22px;
+      font-size: 15px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .continue a:hover,
+    .continue a:focus {
+      background: #171717;
+      color: #ffffff;
+    }
+
+    .back {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .back a {
+      color: #666666;
+      text-decoration: none;
+    }
+
+    .back a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 620px) {
+      body {
+        padding: 45px 18px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      figure img {
+        max-height: none;
+      }
+
+      .progression-table {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<main>
+
+  <h1>How the Project Changed</h1>
+
+  <p class="intro">
+    The framework did not move directly from an idea to the version used in
+    the demonstration. I developed the mathematical structure, implemented it,
+    tested it, found cases where either the model or the implementation behaved
+    incorrectly, and revised both.
+  </p>
+
+  <div class="note">
+    The images on this page come from the project's actual theoretical paper,
+    source code, patch notes, empirical paper, and surviving project archive.
+    Click any image to open it at full size.
+  </div>
+
+
+  <!-- STAGE 1 -->
+
+  <section class="stage">
+
+    <div class="stage-number">01 — Architecture</div>
+
+    <h2>Separating the three questions</h2>
+
+    <p>
+      The theoretical work began by separating evidence-weighted truth,
+      perceived truth, and importance into three outputs with nested input
+      spaces. The same section begins the formal axiom system used to constrain
+      how those outputs should behave.
+    </p>
+
+    <figure>
+
+      <a
+        href="media/01.png"
+        target="_blank"
+        rel="noopener"
+      >
+        <img
+          src="media/01.png"
+          alt="Page from the theoretical paper showing the three-output architecture and the beginning of the formal axiom system"
+        >
+      </a>
+
+      <figcaption>
+        Theoretical paper, Section 2: the three-output architecture and
+        Axioms 1–5.
+      </figcaption>
+
+      <div class="open-note">
+        Click the page to inspect the original image.
+      </div>
+
+    </figure>
+
+  </section>
+
+
+  <!-- STAGE 2 -->
+
+  <section class="stage">
+
+    <div class="stage-number">02 — Constraints</div>
+
+    <h2>Writing failure conditions into the model</h2>
+
+    <p>
+      The remaining axioms include requirements that unfalsifiable statements
+      should not receive non-trivial evidence-weighted truth merely from
+      internal coherence, and that situational stakes should influence a
+      statement only when the statement itself is relevant to those stakes.
+    </p>
+
+    <figure>
+
+      <a
+        href="media/02.png"
+        target="_blank"
+        rel="noopener"
+      >
+        <img
+          src="media/02.png"
+          alt="Formal axiom table containing the falsifiability and statement-stakes relevance axioms"
+        >
+      </a>
+
+      <figcaption>
+        Continuation of the theoretical paper's axiom table. Axiom 8 is
+        “Falsifiability as Truth Condition”; Axiom 15 is
+        “Statement-Stakes Relevance.”
+      </figcaption>
+
+      <div class="open-note">
+        Click the page to inspect the original image.
+      </div>
+
+    </figure>
+
+  </section>
+
+
+  <!-- STAGE 3 -->
+
+  <section class="stage">
+
+    <div class="stage-number">03 — Model revision</div>
+
+    <h2>The relevance gate</h2>
+
+    <p>
+      One failure mode was ambient context: a statement could inherit the
+      importance of a high-stakes situation merely because it appeared near
+      that situation.
+    </p>
+
+    <p>
+      I introduced <strong>Rel(s,c)</strong> so the relevant situational
+      variables are pulled toward their neutral points when the statement
+      itself does not actually bear on the surrounding stakes.
+    </p>
+
+    <figure>
+
+      <a
+        href="media/05.png"
+        target="_blank"
+        rel="noopener"
+      >
+        <img
+          src="media/05.png"
+          alt="Theoretical paper page explaining the relevance gate"
+        >
+      </a>
+
+      <figcaption>
+        Theoretical paper relevance-gate discussion. The page includes the
+        contrast between an irrelevant birthday photograph during a hurricane
+        and a directly relevant flooded-road report, then transitions into the
+        receiver-properties section.
+      </figcaption>
+
+      <div class="open-note">
+        Click the page to inspect the original image.
+      </div>
+
+    </figure>
+
+  </section>
+
+
+  <div class="turning-point">
+    <p>
+      At this point the problem was no longer only:
+      <em>“Can I define the model?”</em>
+      It became:
+      <em>“Does the implementation actually reproduce the model I defined?”</em>
+    </p>
+  </div>
+
+
+  <!-- STAGE 4 -->
+
+  <section class="stage">
+
+    <div class="stage-number">04 — Implementation</div>
+
+    <h2>Moving the equations into code</h2>
+
+    <p>
+      I implemented the scoring architecture in Python. The surviving V3.2
+      engine includes input validation, odds and probability conversion,
+      cluster-specific likelihood-ratio updates, the importance transform,
+      and separate novelty transformations for perceived truth and importance.
+    </p>
+
+    <figure>
+
+      <a
+        href="media/13.png"
+        target="_blank"
+        rel="noopener"
+      >
+        <img
+          src="media/13.png"
+          alt="Excerpt from the actual V3.2 Python formula engine"
+        >
+      </a>
+
+      <figcaption>
+        Actual V3.2 source excerpt. Visible here are validation helpers,
+        <code>odds()</code>, <code>prob()</code>, the likelihood-ratio
+        function <code>lr()</code>, the importance
+        <code>tilde()</code> transform, and the beginning of the novelty
+        transformation code.
+      </figcaption>
+
+      <div class="open-note">
+        Click the code image to inspect it at full size.
+      </div>
+
+    </figure>
+
+  </section>
+
+
+  <!-- STAGE 5 -->
+
+  <section class="stage">
+
+    <div class="stage-number">05 — Implementation correction</div>
+
+    <h2>A formula could be right while its implementation was wrong</h2>
+
+    <p>
+      Evaluating the V3 scorer outputs exposed an implementation error in the
+      importance engine.
+    </p>
+
+    <p>
+      The tilde transformation was being applied directly to the raw
+      multiplicative delivery, situation, and receiver composites. The
+      theoretical model instead required their square-root or cube-root
+      normalized forms first.
+    </p>
+
+    <p>
+      V3.2 corrected the order of operations. The patch materially changed the
+      HumAID importance evaluation while leaving the perceived-truth evaluation
+      unchanged.
+    </p>
+
+    <figure>
+
+      <a
+        href="media/14.png"
+        target="_blank"
+        rel="noopener"
+      >
+        <img
+          src="media/14.png"
+          alt="Actual V3.2 owner-side patch notes documenting the implementation correction"
+        >
+      </a>
+
+      <figcaption>
+        Actual V3.2 patch notes: why the patch was required, the erroneous
+        transformation order, the corrected order, the evaluation change, and
+        the remaining HumAID false-positive issue.
+      </figcaption>
+
+      <div class="open-note">
+        Click the patch notes to inspect them at full size.
+      </div>
+
+    </figure>
+
+  </section>
+
+
+  <!-- STAGE 6 -->
+
+  <section class="stage">
+
+    <div class="stage-number">06 — Empirical iteration</div>
+
+    <h2>The evidence process changed too</h2>
+
+    <p>
+      The LIAR/PolitiFact evaluation initially performed poorly when the
+      scorer had only broad evidence. I then required outside research and,
+      later, extensive exact-claim research.
+    </p>
+
+    <p>
+      I preserved the progression rather than replacing the earlier runs with
+      only the best result.
+    </p>
+
+    <table class="progression-table">
+
+      <thead>
+        <tr>
+          <th>Version</th>
+          <th>Research mode</th>
+          <th>Spearman</th>
+          <th>Pearson</th>
+          <th>MAE</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>V3.3</td>
+          <td>Broad evidence only</td>
+          <td class="numeric">0.069</td>
+          <td class="numeric">0.052</td>
+          <td class="numeric">0.306</td>
+        </tr>
+
+        <tr>
+          <td>V3.4</td>
+          <td>Outside research required</td>
+          <td class="numeric">0.525</td>
+          <td class="numeric">0.481</td>
+          <td class="numeric">0.277</td>
+        </tr>
+
+        <tr>
+          <td>V3.5</td>
+          <td>Extensive exact-claim research</td>
+          <td class="numeric">0.630</td>
+          <td class="numeric">0.560</td>
+          <td class="numeric">0.263</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+    <figure>
+
+      <a
+        href="media/11.png"
+        target="_blank"
+        rel="noopener"
+      >
+        <img
+          src="media/11.png"
+          alt="Empirical study page showing the LIAR V3.3 to V3.5 research progression"
+        >
+      </a>
+
+      <figcaption>
+        Empirical study page showing the LIAR evidence-depth progression,
+        followed by AUC diagnostics, discussion, and the beginning of the
+        study's limitations.
+      </figcaption>
+
+      <div class="open-note">
+        Click the page to inspect the original image.
+      </div>
+
+    </figure>
+
+  </section>
+
+
+  <!-- STAGE 7 -->
+
+  <section class="stage">
+
+    <div class="stage-number">07 — Archive</div>
+
+    <h2>The surviving project structure</h2>
+
+    <p>
+      I kept separate bundles for analysis, scorer-facing material, inputs,
+      older cases, and outputs rather than treating the final paper as the
+      entire project.
+    </p>
+
+    <figure>
+
+      <a
+        href="media/18.png"
+        target="_blank"
+        rel="noopener"
+      >
+        <img
+          class="archive"
+          src="media/18.png"
+          alt="Screenshot of the surviving project archive folders"
+        >
+      </a>
+
+      <figcaption>
+        Surviving project folders from the development archive.
+      </figcaption>
+
+      <div class="open-note">
+        Click the image to inspect the archive screenshot at full size.
+      </div>
+
+    </figure>
+
+    <ul class="archive-list">
+      <li><code>analysis_bundle_v3_5</code></li>
+      <li><code>consolidated_final_scorer_packet_v3_5</code></li>
+      <li><code>inputs_archive</code></li>
+      <li><code>old cases</code></li>
+      <li><code>outputs_archive</code></li>
+    </ul>
+
+  </section>
+
+
+  <!-- CLOSING REFLECTION -->
+
+  <div class="turning-point">
+    <p>
+      The version I use now is therefore not simply the first formulation
+      written more neatly. Some changes came from mathematical failure cases,
+      some from implementation bugs, and some from empirical evidence that
+      the scoring or research protocol was not yet sufficient.
+    </p>
+  </div>
+
+
+  <!-- NEXT PAGE -->
+
+  <div class="continue">
+
+    <p>
+      The next page collects the project materials themselves: papers, code,
+      data and audit artifacts, and the short video walkthrough.
+    </p>
+
+    <a href="materials.html">
+      Continue to project materials →
+    </a>
+
+  </div>
+
+
+  <div class="back">
+    <a href="findings.html">
+      ← Back to observations
+    </a>
+  </div>
+
+</main>
+
+</body>
+</html>
