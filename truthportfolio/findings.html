@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Observations — Truth / Importance Portfolio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ffffff;
+      color: #171717;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 70px 24px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 830px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    h2 {
+      margin: 54px 0 16px;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.75;
+      margin: 0 0 22px;
+    }
+
+    .intro {
+      color: #555555;
+      font-size: 16px;
+      line-height: 1.65;
+      margin-bottom: 38px;
+    }
+
+    .baseline {
+      border-top: 1px solid #d8d8d8;
+      border-bottom: 1px solid #d8d8d8;
+      padding: 24px 0;
+      margin: 36px 0 46px;
+    }
+
+    .baseline-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #666666;
+      margin-bottom: 14px;
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .value-box {
+      padding-right: 18px;
+      border-right: 1px solid #e2e2e2;
+    }
+
+    .value-box:last-child {
+      border-right: none;
+    }
+
+    .symbol {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .number {
+      font-size: 27px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .experiment {
+      margin-top: 34px;
+      padding-top: 28px;
+      border-top: 1px solid #d8d8d8;
+    }
+
+    .experiment-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 9px;
+    }
+
+    .change {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 16px;
+      color: #555555;
+      margin-bottom: 22px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 24px;
+    }
+
+    th {
+      text-align: left;
+      font-size: 13px;
+      color: #666666;
+      font-weight: 600;
+      padding: 10px 8px;
+      border-bottom: 1px solid #cccccc;
+    }
+
+    td {
+      padding: 12px 8px;
+      border-bottom: 1px solid #e8e8e8;
+      font-size: 15px;
+      vertical-align: top;
+    }
+
+    td.numeric {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    .observation {
+      padding-left: 18px;
+      border-left: 2px solid #222222;
+      margin: 24px 0;
+    }
+
+    .observation p {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .observation p:last-child {
+      margin-bottom: 0;
+    }
+
+    .key-point {
+      margin: 42px 0;
+      padding: 26px 0;
+      border-top: 1px solid #d8d8d8;
+      border-bottom: 1px solid #d8d8d8;
+      font-size: 19px;
+      line-height: 1.65;
+    }
+
+    .question {
+      margin-top: 42px;
+      padding: 24px;
+      background: #fafafa;
+      border: 1px solid #dedede;
+    }
+
+    .question h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .question p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #444444;
+    }
+
+    .question p:last-child {
+      margin-bottom: 0;
+    }
+
+    .continue {
+      margin-top: 50px;
+      padding-top: 28px;
+      border-top: 1px solid #d8d8d8;
+    }
+
+    .continue a {
+      display: inline-block;
+      color: #171717;
+      text-decoration: none;
+      border: 1px solid #171717;
+      padding: 12px 22px;
+      font-size: 15px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .continue a:hover,
+    .continue a:focus {
+      background: #171717;
+      color: #ffffff;
+    }
+
+    .back {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .back a {
+      color: #666666;
+      text-decoration: none;
+    }
+
+    .back a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 620px) {
+      .values {
+        grid-template-columns: 1fr;
+      }
+
+      .value-box {
+        border-right: none;
+        border-bottom: 1px solid #e2e2e2;
+        padding: 10px 0 18px;
+      }
+
+      .value-box:last-child {
+        border-bottom: none;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<main>
+
+  <h1>What Changes When the Inputs Change?</h1>
+
+  <p class="intro">
+    I tried several controlled changes after building the worked example.
+    In each experiment below, everything remains fixed except the variable
+    explicitly named.
+  </p>
+
+
+  <!-- BASELINE -->
+
+  <div class="baseline">
+
+    <div class="baseline-label">
+      Original worked example
+    </div>
+
+    <div class="values">
+
+      <div class="value-box">
+        <div class="symbol">
+          T<sub>abs</sub>
+        </div>
+        <div class="number">0.3246</div>
+      </div>
+
+      <div class="value-box">
+        <div class="symbol">
+          T<sub>perc</sub>
+        </div>
+        <div class="number">0.8918</div>
+      </div>
+
+      <div class="value-box">
+        <div class="symbol">I</div>
+        <div class="number">0.9833</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- H -->
+
+  <section class="experiment">
+
+    <div class="experiment-title">
+      Experiment 1 — Remove falsifiability
+    </div>
+
+    <div class="change">
+      H: 0.98 → 0
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Original</th>
+          <th>H = 0</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Statement composite</td>
+          <td class="numeric">0.8878</td>
+          <td class="numeric">0.0000</td>
+        </tr>
+
+        <tr>
+          <td>T<sub>abs</sub></td>
+          <td class="numeric">0.3246</td>
+          <td class="numeric">0.0107</td>
+        </tr>
+
+        <tr>
+          <td>T<sub>perc</sub></td>
+          <td class="numeric">0.8918</td>
+          <td class="numeric">0.1567</td>
+        </tr>
+
+        <tr>
+          <td>I</td>
+          <td class="numeric">0.9833</td>
+          <td class="numeric">0.9780</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="observation">
+
+      <p>
+        Setting falsifiability to zero makes the statement term itself
+        collapse to zero. This is a direct consequence of the factor
+        <strong>1 − e<sup>−kH</sup></strong> introduced during the
+        falsifiability repair.
+      </p>
+
+      <p>
+        The truth value therefore falls sharply. Perceived truth also falls
+        because it begins from the truth value as its anchor.
+      </p>
+
+      <p>
+        Importance behaves very differently. It remains high because the
+        receiver still has an exam the next morning and the message still has
+        immediate consequences for that receiver. Truth enters the importance
+        branch only as a dampened update.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- REL -->
+
+  <section class="experiment">
+
+    <div class="experiment-title">
+      Experiment 2 — Remove contextual relevance
+    </div>
+
+    <div class="change">
+      Rel(s,c): 0.98 → 0
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Original</th>
+          <th>Rel = 0</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>Situational composite</td>
+          <td class="numeric">0.4554</td>
+          <td class="numeric">0.3566</td>
+        </tr>
+
+        <tr>
+          <td>T<sub>abs</sub></td>
+          <td class="numeric">0.3246</td>
+          <td class="numeric">0.3246</td>
+        </tr>
+
+        <tr>
+          <td>T<sub>perc</sub></td>
+          <td class="numeric">0.8918</td>
+          <td class="numeric">0.8573</td>
+        </tr>
+
+        <tr>
+          <td>I</td>
+          <td class="numeric">0.9833</td>
+          <td class="numeric">0.9740</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="observation">
+
+      <p>
+        The part I find most useful here is what does
+        <strong>not</strong> change: the truth value remains exactly the same.
+      </p>
+
+      <p>
+        Relevance belongs to the situational path. It affects perceived truth
+        and importance, but it is not an input to evidence-weighted truth.
+        Changing it therefore leaves T<sub>abs</sub> untouched.
+      </p>
+
+      <p>
+        Also, setting relevance to zero does not erase the entire situation.
+        The relevance gate pulls the gated stakes variables toward their
+        neutral points. Other situational and receiver variables remain in the
+        computation.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- BOTH -->
+
+  <section class="experiment">
+
+    <div class="experiment-title">
+      Experiment 3 — Change both at once
+    </div>
+
+    <div class="change">
+      H = 0 and Rel(s,c) = 0
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Original</th>
+          <th>Both = 0</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>T<sub>abs</sub></td>
+          <td class="numeric">0.3246</td>
+          <td class="numeric">0.0107</td>
+        </tr>
+
+        <tr>
+          <td>T<sub>perc</sub></td>
+          <td class="numeric">0.8918</td>
+          <td class="numeric">0.1194</td>
+        </tr>
+
+        <tr>
+          <td>I</td>
+          <td class="numeric">0.9833</td>
+          <td class="numeric">0.9659</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="observation">
+
+      <p>
+        With falsifiability removed and the surrounding stakes gated toward
+        neutral, the truth and perceived-truth values both become very low.
+      </p>
+
+      <p>
+        Importance still remains high. The reason is not the truth branch or
+        the relevance-gated stakes. The receiver still has a very high
+        personal-consequence input, the message still arrives at an actionable
+        time, and the remaining delivery and receiver terms continue to
+        contribute.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- CENTRAL LESSON -->
+
+  <div class="key-point">
+
+    These experiments show why I kept the three outputs separate.
+
+    <br><br>
+
+    Changing one property of a statement does not have to move
+    <strong>truth</strong>,
+    <strong>perceived truth</strong>,
+    and <strong>importance</strong>
+    in the same direction or by the same amount.
+
+  </div>
+
+
+  <!-- CRITICAL QUESTION -->
+
+  <div class="question">
+
+    <h2>A result I would still investigate</h2>
+
+    <p>
+      The persistence of the importance value is also a useful challenge to
+      the current model. Even with H = 0 and Rel(s,c) = 0, importance remains
+      at 0.9659 in this scenario.
+    </p>
+
+    <p>
+      There is a structural reason for that result: the receiver consequence,
+      receiver novelty, timing, and other delivery inputs remain strong, while
+      truth is deliberately dampened inside the importance branch.
+    </p>
+
+    <p>
+      But the remaining question is empirical: <strong>is that persistence
+      appropriately strong?</strong> The current framework can explain why the
+      value remains high; further calibration is needed to determine whether
+      the magnitude is right.
+    </p>
+
+  </div>
+
+
+  <div class="continue">
+
+    <a href="process.html">
+      Continue →
+    </a>
+
+  </div>
+
+  <div class="back">
+    <a href="interactive.html">← Back to the live framework</a>
+  </div>
+
+</main>
+
+</body>
+</html>
